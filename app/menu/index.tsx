@@ -4,9 +4,9 @@ import { Link } from "expo-router";
 export default function Reservation() {
     return (
       <View style={styles.container}>
-        <Text>Make your reservation!</Text>
-        <Link href="/menu">Check Menu</Link>
-        <Link href="/">Go Back</Link>
+        <Text>Choose your plates!</Text>
+        <Link href="/result">Check result</Link>
+        <Link href="/reservation">Go Back</Link>
       </View>
     );
   }
