@@ -1,12 +1,9 @@
-import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 
-import Home from './src/pages/Home';
-
-export default function App() {
+export default function Home() {
   return (
     <View style={styles.container}>
-      <Home />
+      <Text>Welcome! It's dinner time!</Text>
     </View>
   );
 }
