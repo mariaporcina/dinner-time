@@ -1,9 +1,11 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from "react-native";
+import { Link } from "expo-router";
 
 export default function Home() {
   return (
     <View style={styles.container}>
       <Text>Welcome! It's dinner time!</Text>
+      <Link href="/reservation">Make a reservation</Link>
     </View>
   );
 }
