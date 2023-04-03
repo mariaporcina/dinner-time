@@ -1,20 +1,22 @@
 import styled from "styled-components/native";
-// import { View } from "react-native";
 
 const Container = styled.View`
-    background-color: #fff;
     align-items: center;
-    justify-content: center;
-    border: 1px solid red;
+    justify-content: space-between;
     width: 100%;
-    max-width: 96%;
     padding: 10px
+    flex: 1;
+`;
+
+const Title = styled.Text`
+    font-size: 24px;
+    text-align: center;
 `;
 
 const FormContainer = styled.View`
     align-items: stretch;
-    border: 1px solid red;
     width: 100%;
+    margin-bottom: 40px
 `;
 
 const Input = styled.TextInput`
@@ -22,16 +24,25 @@ const Input = styled.TextInput`
     border: 1px solid #f6f6f6;
     font-size: 15px;
     margin-bottom: 10px;
+    color: #fff;
 `;
 
-const FormButton = styled.Button`
-    color: #000;
-    border: 1px solid red;
+const FormButton = styled.TouchableOpacity`
+    background-color: #DC2F02;
+    text-align: center;
+    padding: 15px;
+`;
+
+const FormButtonText = styled.Text`
+    color: #fff;
+    text-align: center;
 `;
 
 export { 
     Container,
     FormContainer,
     Input,
-    FormButton
+    FormButton,
+    Title,
+    FormButtonText
 };
