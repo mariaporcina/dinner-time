@@ -1,39 +1,30 @@
-import React from 'react';
-import { KeyboardAvoidingView, Platform } from 'react-native';
+import React from "react";
 
-import { Container, FormContainer, Input, FormButton, FormButtonText } from '../styles';
+import { Text } from "react-native";
+import { Link } from "expo-router";
 
-const Form = () => {
-    const [name, onNameUpdate] = React.useState('');
-    const [email, onEmailUpdate] = React.useState('');
-    const [password, onPasswordUpdate] = React.useState('');
-    
-    return (
-        // <Container>
-            <FormContainer
-                behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-                keyboardVerticalOffset={0} >
-                <Input 
-                    placeholder='Nome e Sobrenome'
-                    value={name}
-                    onChangeText={onNameUpdate} />
-                <Input
-                    placeholder='E-mail'
-                    value={email}
-                    onChangeText={onEmailUpdate}
-                    keyboardType='email-address' />
-                <Input
-                    placeholder='Senha'
-                    value={password}
-                    onChangeText={onPasswordUpdate}
-                    keyboardType='visible-password'
-                    secureTextEntry={true} />
-                <FormButton>
-                    <FormButtonText>Cadastrar</FormButtonText>
-                </FormButton>
-            </FormContainer>
-        // </Container>
-    );
+import { Container } from "../styles";
+
+interface FormNavigationProps {
+    formPage?: String
 }
 
-export default Form;
+const FormNavigation = ({ formPage = 'register' }: FormNavigationProps) => {
+    if (formPage === 'login') {
+        return (
+            <Container>
+                <Text>Ainda não possui conta?</Text>
+                <Link href='/'>Cadastrar</Link>
+            </Container>
+        )
+    } else {
+        return (
+            <Container>
+                <Text>Já possui conta?</Text>
+                <Link href='/login'>Entrar</Link>
+            </Container>
+        )
+    }
+}
+
+export default FormNavigation;
