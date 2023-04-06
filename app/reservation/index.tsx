@@ -5,8 +5,7 @@ export default function Reservation() {
     return (
       <View style={styles.container}>
         <Text>Make your reservation!</Text>
-        <Link href="/menu">Check Menu</Link>
-        <Link href="/">Go Back</Link>
+        <Link href="/login">Sair</Link>
       </View>
     );
   }
