@@ -2,25 +2,29 @@ import React from "react";
 
 import { View, Text, StyleSheet } from "react-native";
 
+import { colors } from "../constants";
+import { Container } from '../styles';
+
 const Header = () => {
     return (
         <View style={ styles.view }>
-            <Text style={ styles.text }>Dinner Time</Text>
-        </View>
+            <Container>
+                <Text style={ styles.text }>Dinner Time</Text>
+            </Container>
+        </View> 
     )
 }
 
 const styles = StyleSheet.create({
     view: {
-        backgroundColor: '#DC2F02',
+        backgroundColor: colors.darkRed,
         paddingTop: 45,
-        paddingLeft: 10,
-        paddingRight: 10,
-        height: 85,
+        height: 90,
     },
     text: {
         fontSize: 22,
         fontWeight: 'bold',
+        color: '#edf2f4'
     }
 });
 

@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { Link } from "expo-router";
 
 import { Container } from "../src/components/general/styles";
@@ -12,14 +12,9 @@ export default function Home() {
     <View style={ styles.view }>
       <Header />
 
-      <Container>
-        {/* <Text>Welcome! It's dinner time!</Text> */}
-        <WelcomeSection />
-        
-        <Form />
-
-        {/* <Link href="/reservation">Make a reservation</Link> */}
-      </Container>
+      <WelcomeSection />
+      
+      <Form />
     </View>
   );
 }
@@ -27,7 +22,6 @@ export default function Home() {
 const styles = StyleSheet.create({
   view: {
     flex: 1,
-    justifyContent: 'center',
-    backgroundColor: '#333333',
+    backgroundColor: '#edf2f4',
   },
 });
