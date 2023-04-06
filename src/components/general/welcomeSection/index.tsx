@@ -1,14 +1,13 @@
 import React from "react";
-import { View, Text } from "react-native";
 
-import { Title } from "../styles";
+import { Title, Container, Subtitle } from "../styles";
 
 const WelcomeSection = () => {
     return (
-        <View>
-            <Title>Bem vindo! It's Dinner Time!</Title>
-            <Text>Cadastre-se no app para iniciar.</Text>
-        </View>
+        <Container>
+            <Title>Bem vindo!{"\n"}It's Dinner Time!</Title>
+            <Subtitle>Cadastre-se no app para iniciar.</Subtitle>
+        </Container>
     )
 }
 
