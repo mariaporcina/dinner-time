@@ -28,9 +28,18 @@ const FormNavigation = ({ formPage = 'register' }: FormNavigationProps) => {
     return (
         <FormNavigationContainer>
             <Text>{ defineNavigation[formPage].text }</Text>
-            <Link href={ defineNavigation[formPage].url }>{ defineNavigation[formPage].linkText }</Link>
+            <Link style={ styles.link } href={ defineNavigation[formPage].url }>{ defineNavigation[formPage].linkText }</Link>
         </FormNavigationContainer>
     )
 }
+
+const styles = StyleSheet.create({
+    link: {
+        color: '#0466c8',
+        textDecorationLine: 'underline',
+        fontWeight: 'bold',
+        marginTop: 5
+    }
+});
 
 export default FormNavigation;
