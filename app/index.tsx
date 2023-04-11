@@ -6,7 +6,7 @@ import { Container } from "../src/components/general/styles";
 import RegisterForm from "../src/components/register/form";
 import WelcomeSection from "../src/components/general/welcomeSection";
 import Header from "../src/components/general/header";
-import FormNavigation from "../src/components/general/form";
+import FormNavigation from "../src/components/general/formNavigation";
 
 export default function Home() {
   const router = useRouter();
@@ -19,7 +19,7 @@ export default function Home() {
 
   return (
     <View style={ styles.view }>
-      <Header />
+      <Header page='register' />
 
       <WelcomeSection />
       

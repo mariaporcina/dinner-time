@@ -6,7 +6,7 @@ import { Container } from "../../src/components/general/styles";
 import LoginForm from "../../src/components/login/form";
 import WelcomeSection from "../../src/components/general/welcomeSection";
 import Header from "../../src/components/general/header";
-import FormNavigation from "../../src/components/general/form";
+import FormNavigation from "../../src/components/general/formNavigation";
 
 export default function Login() {
     const router = useRouter();
@@ -19,7 +19,7 @@ export default function Login() {
 
     return (
         <View style={ styles.view }>
-            <Header />
+            <Header page='login' />
 
             <WelcomeSection />
             
