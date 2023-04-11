@@ -5,8 +5,10 @@ import { Link } from "expo-router";
 
 import { FormNavigationContainer } from "../styles";
 
+type page = 'register' | 'login';
+
 interface FormNavigationProps {
-    formPage?: String;
+    formPage?: page;
 }
 
 const FormNavigation = ({ formPage = 'register' }: FormNavigationProps) => {
