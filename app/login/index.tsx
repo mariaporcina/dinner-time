@@ -19,7 +19,7 @@ export default function Login() {
 
     return (
         <View style={ styles.view }>
-            <Header />
+            <Header page='login' />
 
             <WelcomeSection />
             

@@ -7,11 +7,9 @@ import ReservationForm from "../../src/components/reservation/form";
 export default function Reservation() {
   return (
     <View style={styles.view}>
-      <Header />
+      <Header page='reservation' />
 
       <WelcomeSection />
-
-      <Link style={styles.link} href="/login">Sair</Link>
 
       <ReservationForm />
     </View>

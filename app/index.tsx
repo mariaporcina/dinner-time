@@ -19,7 +19,7 @@ export default function Home() {
 
   return (
     <View style={ styles.view }>
-      <Header />
+      <Header page='register' />
 
       <WelcomeSection />
       
