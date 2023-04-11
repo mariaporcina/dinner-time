@@ -6,7 +6,11 @@ import { View, Text, StyleSheet } from "react-native";
 import { colors } from "../constants";
 import { Container } from '../styles';
 
-const Header = ({ page }) => {
+interface HeaderProps {
+    page: string;
+}
+
+const Header = ({ page }: HeaderProps) => {
     return (
         <View style={ styles.view }>
             <Container style={styles.container}>
