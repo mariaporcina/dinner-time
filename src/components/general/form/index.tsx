@@ -1,30 +1,36 @@
 import React from "react";
 
-import { Text } from "react-native";
+import { StyleSheet, Text } from "react-native";
 import { Link } from "expo-router";
 
-import { Container } from "../styles";
+import { FormNavigationContainer } from "../styles";
+
+type page = 'register' | 'login';
 
 interface FormNavigationProps {
-    formPage?: String
+    formPage?: page;
 }
 
 const FormNavigation = ({ formPage = 'register' }: FormNavigationProps) => {
-    if (formPage === 'login') {
-        return (
-            <Container>
-                <Text>Ainda não possui conta?</Text>
-                <Link href='/'>Cadastrar</Link>
-            </Container>
-        )
-    } else {
-        return (
-            <Container>
-                <Text>Já possui conta?</Text>
-                <Link href='/login'>Entrar</Link>
-            </Container>
-        )
-    }
+    const defineNavigation = {
+        'login': {
+            text: 'Ainda não possui conta?',
+            linkText: 'Cadastrar',
+            url: '/'
+        },
+        'register': {
+            text: 'Já possui conta?',
+            linkText: 'Entrar',
+            url: '/login'
+        }
+    };
+
+    return (
+        <FormNavigationContainer>
+            <Text>{ defineNavigation[formPage].text }</Text>
+            <Link href={ defineNavigation[formPage].url }>{ defineNavigation[formPage].linkText }</Link>
+        </FormNavigationContainer>
+    )
 }
 
 export default FormNavigation;

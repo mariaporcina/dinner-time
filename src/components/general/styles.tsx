@@ -26,7 +26,12 @@ const FormContainer = styled.KeyboardAvoidingView`
     flex: 1;
     height: auto;
     justify-content: flex-end;
-    margin-bottom: 50px;
+    margin-bottom: 10px;
+    padding: 10px;
+`;
+
+const FormNavigationContainer = styled.View`
+    align-items: flex-end;
     padding: 10px;
 `;
 
@@ -56,5 +61,6 @@ export {
     FormButton,
     Title,
     Subtitle,
-    FormButtonText
+    FormButtonText,
+    FormNavigationContainer
 };
