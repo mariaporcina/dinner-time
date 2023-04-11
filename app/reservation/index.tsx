@@ -1,20 +1,31 @@
 import { StyleSheet, View, Text } from "react-native";
 import { Link } from "expo-router";
+import Header from "../../src/components/general/header";
+import WelcomeSection from "../../src/components/general/welcomeSection";
+import ReservationForm from "../../src/components/reservation/form";
 
 export default function Reservation() {
-    return (
-      <View style={styles.container}>
-        <Text>Make your reservation!</Text>
-        <Link href="/login">Sair</Link>
-      </View>
-    );
+  return (
+    <View style={styles.view}>
+      <Header />
+
+      <WelcomeSection />
+
+      <Link style={styles.link} href="/login">Sair</Link>
+
+      <ReservationForm />
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  view: {
+    flex: 1,
+    backgroundColor: '#edf2f4',
+    paddingBottom: 50,
+  },
+  link: {
+    textAlign: 'center',
+    color: 'blue'
   }
-  
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: '#fff',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-  });
+});
