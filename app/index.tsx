@@ -1,5 +1,5 @@
 import { ScrollView, StyleSheet, Text, View } from "react-native";
-import { Link, useRouter } from "expo-router";
+import { Link, Stack, useRouter } from "expo-router";
 
 import { Container } from "../src/components/general/styles";
 
@@ -26,6 +26,8 @@ export default function Home() {
       <RegisterForm handlePress={ handleLinkClick } />
 
       <FormNavigation />
+      
+      <Stack.Screen options={{ title: "Overview" }} />
     </View>
   );
 }
