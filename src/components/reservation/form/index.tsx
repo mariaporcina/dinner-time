@@ -4,7 +4,11 @@ import { Button, Platform, StyleSheet, Text } from "react-native";
 
 import { FormButton, FormButtonText, FormContainer } from "../../general/styles";
 
-const ReservationForm = () => {
+interface ReservationFormProps {
+    handlePress: Function
+}
+
+const ReservationForm = ({ handlePress }: ReservationFormProps) => {
     const [date, setDate] = useState(new Date());
     const [mode, setMode] = useState('date');
     const [show, setShow] = useState(false);
@@ -23,7 +27,7 @@ const ReservationForm = () => {
             setShow(true);
         }
         setMode(currentMode);
-    };
+    }; 
 
     const showDatepicker = () => {
         showMode('date');
@@ -55,7 +59,7 @@ const ReservationForm = () => {
                     onChange={onChange}
                 />
             )}
-            <FormButton>
+            <FormButton onPress={handlePress}>
                 <FormButtonText>Fazer reserva</FormButtonText>
             </FormButton>
         </FormContainer>
