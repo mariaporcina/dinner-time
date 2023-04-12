@@ -1,5 +1,5 @@
 import React, { SetStateAction, useState } from "react";
-import DateTimePicker from '@react-native-community/datetimepicker';
+import DateTimePicker,{DateTimePickerEvent} from '@react-native-community/datetimepicker';
 import { Button, Platform, StyleSheet, Text } from "react-native";
 
 import { FormButton, FormButtonText, FormContainer } from "../../general/styles";
@@ -13,10 +13,12 @@ const ReservationForm = ({ handlePress }: ReservationFormProps) => {
     const [mode, setMode] = useState('date');
     const [show, setShow] = useState(false);
 
-    const onChange = (event: Event, selectedDate: Date) => {
-        const currentDate = selectedDate;
+    const onChange = (event: DateTimePickerEvent, date?: Date | undefined) => {
+        // const currentDate = date;
         // setShow(false);
-        setDate(currentDate);
+        if(date){
+            setDate(date);
+        }
     };
 
     const showMode = (currentMode: SetStateAction<string>) => {
@@ -54,7 +56,7 @@ const ReservationForm = ({ handlePress }: ReservationFormProps) => {
                 <DateTimePicker
                     testID="dateTimePicker"
                     value={date}
-                    mode={mode}
+                    mode={mode as any}
                     is24Hour={true}
                     onChange={onChange}
                 />
