@@ -9,31 +9,33 @@ import Header from "../src/components/general/header";
 import FormNavigation from "../src/components/general/formNavigation";
 
 export default function Home() {
-  const router = useRouter();
+    const router = useRouter();
 
-  const handleLinkClick = () => {
-    router.push({
-      pathname: "/login",
-    });
-  }
+    const handleLinkClick = () => {
+        router.push({
+            pathname: "/login",
+        });
+    }
 
-  return (
-    <View style={ styles.view }>
-      <Header page='register' />
+    return (
+        <View style={styles.view}>
+            <Header page='register' />
 
-      <WelcomeSection />
-      
-      <RegisterForm handlePress={ handleLinkClick } />
+            <WelcomeSection
+                title={"Bem vindo!\nIt's Dinner Time!"}
+                subtitle="Cadastre-se no app para iniciar." />
 
-      <FormNavigation />
-    </View>
-  );
+            <RegisterForm handlePress={handleLinkClick} />
+
+            <FormNavigation />
+        </View>
+    );
 }
 
 const styles = StyleSheet.create({
-  view: {
-    flex: 1,
-    backgroundColor: '#edf2f4',
-    paddingBottom: 50,
-  },
+    view: {
+        flex: 1,
+        backgroundColor: '#edf2f4',
+        paddingBottom: 50,
+    },
 });

@@ -21,7 +21,9 @@ export default function Login() {
         <View style={ styles.view }>
             <Header page='login' />
 
-            <WelcomeSection />
+            <WelcomeSection
+                title={"Bem vindo de volta!\nIt's Dinner Time!"}
+                subtitle="Acesso sua conta para fazer sua reserva." />
             
             <LoginForm handlePress={ handleLinkClick } />
 

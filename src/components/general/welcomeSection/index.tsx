@@ -2,11 +2,16 @@ import React from "react";
 
 import { Title, Container, Subtitle } from "../styles";
 
-const WelcomeSection = () => {
+interface WelcomeSectionProps {
+    title?: string;
+    subtitle: string;
+}
+
+const WelcomeSection = ({ title='Dinner Time!', subtitle }: WelcomeSectionProps) => {
     return (
         <Container>
-            <Title>Bem vindo!{"\n"}It's Dinner Time!</Title>
-            <Subtitle>Cadastre-se no app para iniciar.</Subtitle>
+            <Title>{ title }</Title>
+            <Subtitle>{ subtitle }</Subtitle>
         </Container>
     )
 }
