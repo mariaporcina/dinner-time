@@ -14,8 +14,6 @@ const ReservationForm = ({ handlePress }: ReservationFormProps) => {
     const [show, setShow] = useState(false);
 
     const onChange = (event: DateTimePickerEvent, date?: Date | undefined) => {
-        // const currentDate = date;
-        // setShow(false);
         if(date){
             setDate(date);
         }
@@ -24,7 +22,6 @@ const ReservationForm = ({ handlePress }: ReservationFormProps) => {
     const showMode = (currentMode: SetStateAction<string>) => {
         if (Platform.OS === 'android') {
             setShow(false);
-            // for iOS, add a button that closes the picker
         } else {
             setShow(true);
         }
