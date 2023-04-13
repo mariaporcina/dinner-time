@@ -1,5 +1,5 @@
 import { StyleSheet, View, Text } from "react-native";
-import { Link } from "expo-router";
+import { Link, useRouter } from "expo-router";
 
 import Header from "../../src/components/general/header";
 import MenuList from "../../src/components/menu/menuList";
@@ -7,6 +7,14 @@ import WelcomeSection from "../../src/components/general/welcomeSection";
 import { Container, FormButton, FormButtonText } from "../../src/components/general/styles";
 
 export default function Reservation() {
+    const router = useRouter();
+
+    const handleLinkClick = () => {
+        router.push({
+            pathname: "/result",
+        });
+    }
+    
     return (
         <View style={styles.view}>
             <Header page='menu' title="Cardápio" />
@@ -18,7 +26,7 @@ export default function Reservation() {
             <MenuList />
             
             <Container style={styles.buttonContainer}>
-                <FormButton>
+                <FormButton onPress={handleLinkClick}>
                     <FormButtonText>Finalizar</FormButtonText>
                 </FormButton>
             </Container>
