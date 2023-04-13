@@ -8,13 +8,14 @@ import { Container } from '../styles';
 
 interface HeaderProps {
     page: string;
+    title?: string;
 }
 
-const Header = ({ page }: HeaderProps) => {
+const Header = ({ page, title }: HeaderProps) => {
     return (
         <View style={ styles.view }>
             <Container style={styles.container}>
-                <Text style={ styles.text }>Dinner Time</Text>
+                <Text style={ styles.text }>{!!title ? title : 'Dinner Time'}</Text>
                 { page !== 'login' && page !== 'register' && <Link style={styles.link} href="/login">Sair</Link> }
             </Container>
         </View> 

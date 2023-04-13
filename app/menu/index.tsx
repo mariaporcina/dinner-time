@@ -9,11 +9,11 @@ import { Container, FormButton, FormButtonText } from "../../src/components/gene
 export default function Reservation() {
     return (
         <View style={styles.view}>
-            <Header page='manu' />
+            <Header page='menu' title="Cardápio" />
 
-            <WelcomeSection 
+            {/* <WelcomeSection 
                 title="Cardápio"
-                subtitle="Selecione os pratos" />
+                subtitle="Selecione os pratos" /> */}
 
             <MenuList />
             
