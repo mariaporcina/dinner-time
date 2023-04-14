@@ -1,7 +1,7 @@
 import { StyleSheet, View, Text, FlatList } from "react-native";
-import { Link } from "expo-router";
+import { Link, useRouter } from "expo-router";
 import Header from "../../src/components/general/header";
-import { Container } from "../../src/components/general/styles";
+import { Container, FormButton, FormButtonText } from "../../src/components/general/styles";
 import MenuItem from "../../src/components/menu/menuList/menuItem";
 import { useState } from "react";
 import { Plate } from "../../src/components/general/models";
@@ -22,6 +22,16 @@ export default function Reservation() {
         }
     ]);
 
+    const router = useRouter();
+
+    const handleLinkClick = () => {
+        router.push({
+            pathname: "/reservation",
+        });
+    }
+
+    const handlePress = () => {}
+
     return (
         <View style={styles.view}>
             <Header page="result" title="Reserva" />
@@ -32,15 +42,23 @@ export default function Reservation() {
                 <Text>13/05/2023 20:00</Text>
             </Text>
 
-            <Container>
+            <Container style={styles.listContainer}>
                 <FlatList
                     data={plates}
                     renderItem={({ item }) => <MenuItem plate={item} isMenu={false} />}
                     keyExtractor={plate => plate.id} />
             </Container>
 
-            <Link href="/login">Sair</Link>
-            <Link href="/menu">Go Back</Link>
+            <Container style={styles.buttonContainer}>
+                {/* <View> */}
+                    <FormButton style={styles.button} onPress={handleLinkClick}>
+                        <FormButtonText>Voltar</FormButtonText>
+                    </FormButton>
+                    <FormButton style={styles.button} onPress={handlePress}>
+                        <FormButtonText>Finalizar</FormButtonText>
+                    </FormButton>
+                {/* </View> */}
+            </Container>
         </View>
     );
 }
@@ -58,5 +76,17 @@ const styles = StyleSheet.create({
     text: {
         fontWeight: 'bold',
         fontSize: 16,
+    },
+    listContainer: {
+        flexGrow: 2,
+    },
+    buttonContainer: {
+        flexDirection: "row",
+        alignItems: "flex-end",
+        justifyContent: "space-between",
+        gap: 15
+    },
+    button: {
+        flexBasis: "50%",
     }
 });
