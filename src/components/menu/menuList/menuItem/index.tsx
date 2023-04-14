@@ -1,74 +1,51 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, Image, Button, TouchableHighlight, TouchableWithoutFeedback } from "react-native";
+import { View, StyleSheet, TouchableWithoutFeedback } from "react-native";
 import Checkbox from 'expo-checkbox';
 
 import { Plate } from "../../../general/models";
-import { Title } from "../../../general/styles";
+import { ItemContainer, ContentContainer, PlateName, PlateDescription, PlatePrice, PlateImage } from "../../style";
 
 const plateImage = require('../../../../../assets/images/prato1.jpg');
 
 interface MenuItemProps {
-    plate: Plate
+    plate: Plate;
+    isMenu: boolean;
 }
 
-const MenuItem = ({ plate }: MenuItemProps) => {
+const MenuItem = ({ plate, isMenu }: MenuItemProps) => {
     const [isChecked, setChecked] = useState(false);
 
     const handlePress = () => {
-        setChecked(!isChecked);
+        if(isMenu){
+            setChecked(!isChecked);
+        }
     }
 
     return (
         <TouchableWithoutFeedback onPress={handlePress}>
-            <View style={isChecked ? styles.viewSelected : styles.view}>
+            <ItemContainer style={isChecked && styles.viewSelected}>
                 <View>
-                    <Image style={styles.image} source={plateImage} />
+                    <PlateImage source={plateImage} />
                 </View>
-                <View style={styles.viewInfo}>
-                    <Text style={styles.text}>{plate.name}</Text>
-                    <Text>{plate.shortDescription}</Text>
-                    <Checkbox
+                <ContentContainer>
+                    <PlateName>{ plate.name }</PlateName>
+                    <PlateDescription>{ plate.shortDescription }</PlateDescription>
+                    <PlatePrice>{ `R$ ${plate.price.toString().replace('.', ',')}` }</PlatePrice>
+                    { isMenu && <Checkbox
                         style={styles.checkbox}
                         value={isChecked}
                         onValueChange={setChecked}
                         color={isChecked ? '#000' : undefined}
-                    />
-                </View>
-            </View>
+                    /> }
+                </ContentContainer>
+            </ItemContainer>
         </TouchableWithoutFeedback>
     );
 }
 
 const styles = StyleSheet.create({
-    view: {
-        flexDirection: "row",
-        gap: 10,
-        marginBottom: 10,
-        backgroundColor: '#fff',
-        borderRadius: 2,
-        padding: 10,
-    },
     viewSelected: {
-        flexDirection: "row",
-        gap: 10,
-        marginBottom: 10,
-        backgroundColor: '#8D99AE',
-        borderRadius: 2,
-        padding: 10,
-    },
-    viewInfo: {
-        flexGrow: 2
-    },
-    text: {
-        fontSize: 16,
-        fontWeight: "bold",
-        marginBottom: 5,
-        marginTop: 10
-    },
-    image: {
-        width: 140,
-        height: 100,
-        borderRadius: 4
+        backgroundColor: '#c8d3e4',
     },
     checkbox: {
         position: "absolute",

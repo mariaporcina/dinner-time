@@ -11,36 +11,43 @@ const MenuList = () => {
             id: '1',
             name: 'Strogonoff',
             shortDescription: 'loren ipsum dolor sit amet',
+            price: 29.99,
         },
         {
             id: '2',
             name: 'Strogonoff 2',
             shortDescription: 'loren ipsum dolor sit amet',
+            price: 29.99,
         },
         {
             id: '3',
             name: 'Strogonoff 3',
             shortDescription: 'loren ipsum dolor sit amet',
+            price: 29.99,
         },
         {
             id: '4',
             name: 'Strogonoff 4',
             shortDescription: 'loren ipsum dolor sit amet',
+            price: 29.99,
         },
         {
             id: '5',
             name: 'Strogonoff 5',
             shortDescription: 'loren ipsum dolor sit amet',
+            price: 29.99,
         },
         {
             id: '6',
             name: 'Strogonoff 6',
             shortDescription: 'loren ipsum dolor sit amet',
+            price: 29.99,
         },
         {
             id: '7',
             name: 'Strogonoff 7',
             shortDescription: 'loren ipsum dolor sit amet',
+            price: 29.99,
         }
     ]);
 
@@ -48,7 +55,7 @@ const MenuList = () => {
         <Container style={styles.container}>
             <FlatList
                 data={plates}
-                renderItem={({item}) => <MenuItem plate={item} />}
+                renderItem={({item}) => <MenuItem plate={item} isMenu={true} />}
                 keyExtractor={plate => plate.id} />
         </Container>
     );
