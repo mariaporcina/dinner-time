@@ -5,6 +5,7 @@ import { Container, FormButton, FormButtonText } from "../../src/components/gene
 import MenuItem from "../../src/components/menu/menuList/menuItem";
 import { useState } from "react";
 import { Plate } from "../../src/components/general/models";
+import WelcomeSection from "../../src/components/general/welcomeSection";
 
 export default function Reservation() {
     const [plates, setPlates] = useState<Plate[]>([
@@ -36,7 +37,10 @@ export default function Reservation() {
         <View style={styles.view}>
             <Header page="result" title="Reserva" />
 
-            <Text>Confira os dados da sua reserva</Text>
+            {/* <Text>Confira os dados da sua reserva</Text> */}
+            
+            <WelcomeSection customStyle={styles.welcomeSection} title="Confira os dados da sua reserva" />
+
             <Text style={styles.textContainer}>
                 <Text style={styles.text}>Data selecionada: </Text>
                 <Text>13/05/2023 20:00</Text>
@@ -71,22 +75,27 @@ const styles = StyleSheet.create({
     },
     textContainer: {
         marginBottom: 20,
-        textAlign: 'center'
+        textAlign: 'center',
     },
     text: {
         fontWeight: 'bold',
         fontSize: 16,
     },
     listContainer: {
-        flexGrow: 2,
+        // flexGrow: 2,
     },
     buttonContainer: {
         flexDirection: "row",
         alignItems: "flex-end",
         justifyContent: "space-between",
-        gap: 15
+        gap: 10
     },
     button: {
-        flexBasis: "50%",
+        flexBasis: "48.8%",
+    },
+    welcomeSection: {
+        flexGrow: 0,
+        flexShrink: 0,
+        flexBasis: "auto",
     }
 });
