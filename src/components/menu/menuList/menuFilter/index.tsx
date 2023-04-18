@@ -11,7 +11,25 @@ interface MenuFilterProps {
 }
 
 const MenuFilter = ({ data, filteredData, setFilteredData }: MenuFilterProps) => {
-    const [filterValue, setFilterValue] = useState([0, 100]);
+    const getSmallestPrice = () => {
+        let smallest = data[0];
+        data.forEach(plate => {
+            smallest = plate.price > smallest.price ? smallest : plate;
+        });
+
+        return smallest.price;
+    }
+    const getBiggestPrice = () => {
+        let biggest = data[0];
+        data.forEach(plate => {
+            biggest = plate.price > biggest.price ? plate : biggest;
+        });
+
+        return biggest.price;
+    }
+
+    const [filterValue, setFilterValue] = useState([getSmallestPrice(), getBiggestPrice()]);
+    
     const onFilterChange = (values: number[]) => {
         setFilterValue(values);
         filterData();
@@ -30,10 +48,10 @@ const MenuFilter = ({ data, filteredData, setFilteredData }: MenuFilterProps) =>
             </View>
             <MultiSlider
                 values={[filterValue[0], filterValue[1]]}
-                sliderLength={250}
+                sliderLength={getBiggestPrice()}
                 onValuesChange={onFilterChange}
-                min={0}
-                max={100}
+                min={getSmallestPrice()}
+                max={getBiggestPrice()}
                 step={1}
                 allowOverlap
                 snapped
