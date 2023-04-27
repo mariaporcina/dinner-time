@@ -43,12 +43,13 @@ const MenuFilter = ({ data, filteredData, setFilteredData }: MenuFilterProps) =>
     return (
         <View>
             <View style={styles.textContainer}>
-                <Text>{filterValue[0]} </Text>
-                <Text>{filterValue[1]}</Text>
+                <Text style={styles.text}>{`R$ ${filterValue[0].toFixed(2).toString().replace('.', ',')}`}</Text>
+                <Text style={styles.text}>{`R$ ${filterValue[1].toFixed(2).toString().replace('.', ',')}`}</Text>
             </View>
             <MultiSlider
+                containerStyle={styles.container}
                 values={[filterValue[0], filterValue[1]]}
-                sliderLength={getBiggestPrice()}
+                sliderLength={394}
                 onValuesChange={onFilterChange}
                 min={getSmallestPrice()}
                 max={getBiggestPrice()}
@@ -60,10 +61,21 @@ const MenuFilter = ({ data, filteredData, setFilteredData }: MenuFilterProps) =>
     );
 }
 
-
 const styles = StyleSheet.create({
     textContainer: {
-        flexDirection: "row"
+        flexDirection: "row",
+        alignContent: "center",
+        justifyContent: "flex-end",
+        gap: 15,
+        // marginBottom: 10
+    },
+    text: {
+        fontWeight: '600',
+        fontSize: 20
+    },
+    container: {
+        height: 32,
+        marginBottom: 10
     }
 });
 

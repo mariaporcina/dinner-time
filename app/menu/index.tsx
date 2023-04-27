@@ -9,24 +9,29 @@ import { Container, FormButton, FormButtonText } from "../../src/components/gene
 export default function Reservation() {
     const router = useRouter();
 
-    const handleLinkClick = () => {
+    const handleGoBackClick = () => {
+        router.push({
+            pathname: "/reservation",
+        });
+    }
+
+    const handleFinishClick = () => {
         router.push({
             pathname: "/result",
         });
     }
-    
+
     return (
         <View style={styles.view}>
             <Header page='menu' title="Cardápio" />
 
-            {/* <WelcomeSection 
-                title="Cardápio"
-                subtitle="Selecione os pratos" /> */}
-
             <MenuList />
-            
+
             <Container style={styles.buttonContainer}>
-                <FormButton onPress={handleLinkClick}>
+                <FormButton style={styles.button} onPress={handleGoBackClick}>
+                    <FormButtonText>Voltar</FormButtonText>
+                </FormButton>
+                <FormButton style={styles.button} onPress={handleFinishClick}>
                     <FormButtonText>Finalizar</FormButtonText>
                 </FormButton>
             </Container>
@@ -41,7 +46,14 @@ const styles = StyleSheet.create({
         paddingBottom: 50
     },
     buttonContainer: {
-        justifyContent: "flex-end",
-        flexShrink: 3
-    }
+        flexDirection: "row",
+        justifyContent: "space-between",
+        gap: 10,
+        flexGrow: 0,
+        flexShrink: 1,
+        flexBasis: 'auto'
+    },
+    button: {
+        flexBasis: "48.8%",
+    },
 });

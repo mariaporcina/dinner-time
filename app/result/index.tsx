@@ -27,7 +27,7 @@ export default function Reservation() {
 
     const handleLinkClick = () => {
         router.push({
-            pathname: "/reservation",
+            pathname: "/menu",
         });
     }
 
@@ -37,8 +37,6 @@ export default function Reservation() {
         <View style={styles.view}>
             <Header page="result" title="Reserva" />
 
-            {/* <Text>Confira os dados da sua reserva</Text> */}
-            
             <WelcomeSection customStyle={styles.welcomeSection} title="Confira os dados da sua reserva" />
 
             <Text style={styles.textContainer}>
@@ -54,14 +52,12 @@ export default function Reservation() {
             </Container>
 
             <Container style={styles.buttonContainer}>
-                {/* <View> */}
-                    <FormButton style={styles.button} onPress={handleLinkClick}>
-                        <FormButtonText>Voltar</FormButtonText>
-                    </FormButton>
-                    <FormButton style={styles.button} onPress={handlePress}>
-                        <FormButtonText>Finalizar</FormButtonText>
-                    </FormButton>
-                {/* </View> */}
+                <FormButton style={styles.button} onPress={handleLinkClick}>
+                    <FormButtonText>Voltar</FormButtonText>
+                </FormButton>
+                <FormButton style={styles.button} onPress={handlePress}>
+                    <FormButtonText>Finalizar</FormButtonText>
+                </FormButton>
             </Container>
         </View>
     );

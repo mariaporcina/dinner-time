@@ -30,7 +30,7 @@ const MenuItem = ({ plate, isMenu }: MenuItemProps) => {
                 <ContentContainer>
                     <PlateName>{ plate.name }</PlateName>
                     <PlateDescription>{ plate.shortDescription }</PlateDescription>
-                    <PlatePrice>{ `R$ ${plate.price.toString().replace('.', ',')}` }</PlatePrice>
+                    <PlatePrice>{ `R$ ${plate.price.toFixed(2).toString().replace('.', ',')}` }</PlatePrice>
                     { isMenu && <Checkbox
                         style={styles.checkbox}
                         value={isChecked}

@@ -70,7 +70,6 @@ const MenuList = () => {
 const styles = StyleSheet.create({
     container: {
         justifyContent: "flex-start",
-        flexGrow: 15
     }
 });
 
