@@ -3,13 +3,13 @@ import { FlatList, StyleSheet } from "react-native";
 
 import MenuItem from "./menuItem";
 
-import { Plate } from "../../general/models";
+import { MenuItemType } from "../../general/models";
 import { Container } from "../../general/styles";
 import MenuFilter from "./menuFilter";
 
 
 const MenuList = () => {
-    const [plates, setPlates] = useState<Plate[]>([
+    const [plates, setPlates] = useState<MenuItemType[]>([
         {
             id: '1',
             name: 'Strogonoff',
@@ -53,7 +53,7 @@ const MenuList = () => {
             price: 19.99,
         }
     ]);
-    const [filteredPlates, setFilteredPlates] = useState<Plate[]>([]);
+    const [filteredPlates, setFilteredPlates] = useState<MenuItemType[]>([]);
 
     return (
         <Container style={styles.container}>

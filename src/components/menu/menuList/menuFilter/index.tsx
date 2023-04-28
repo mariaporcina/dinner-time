@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { StyleSheet, View, Text } from "react-native";
 import MultiSlider from '@ptomasroos/react-native-multi-slider';
 
-import { Plate } from "../../../general/models";
+import { MenuItemType } from "../../../general/models";
 
 interface MenuFilterProps {
-    data: Plate[];
-    filteredData: Plate[];
+    data: MenuItemType[];
+    filteredData: MenuItemType[];
     setFilteredData: Function;
 }
 

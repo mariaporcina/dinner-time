@@ -8,8 +8,14 @@ import WelcomeSection from "../src/components/general/welcomeSection";
 import Header from "../src/components/general/header";
 import FormNavigation from "../src/components/general/formNavigation";
 
+import useCollection from "../hooks/useCollection";
+import { MenuItemType } from "../src/components/general/models";
+
 export default function Home() {
     const router = useRouter();
+
+    const { data } = useCollection<MenuItemType>("menu");
+    console.log(data);
 
     const handleLinkClick = () => {
         router.push({

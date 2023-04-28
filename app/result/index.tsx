@@ -4,11 +4,11 @@ import Header from "../../src/components/general/header";
 import { Container, FormButton, FormButtonText } from "../../src/components/general/styles";
 import MenuItem from "../../src/components/menu/menuList/menuItem";
 import { useState } from "react";
-import { Plate } from "../../src/components/general/models";
+import { MenuItemType } from "../../src/components/general/models";
 import WelcomeSection from "../../src/components/general/welcomeSection";
 
 export default function Reservation() {
-    const [plates, setPlates] = useState<Plate[]>([
+    const [plates, setPlates] = useState<MenuItemType[]>([
         {
             id: '1',
             name: 'Strogonoff',

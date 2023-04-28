@@ -1,4 +1,4 @@
-interface Plate {
+interface MenuItemType {
     id: string;
     name: string;
     shortDescription: string;
@@ -6,5 +6,5 @@ interface Plate {
 }
 
 export {
-    Plate
+    MenuItemType
 }
