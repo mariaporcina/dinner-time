@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import { View, StyleSheet, TouchableWithoutFeedback } from "react-native";
 import Checkbox from 'expo-checkbox';
 
-import { Plate } from "../../../general/models";
+import { MenuItemType } from "../../../general/models";
 import { ItemContainer, ContentContainer, PlateName, PlateDescription, PlatePrice, PlateImage } from "../../style";
 
 const plateImage = require('../../../../../assets/images/prato1.jpg');
 
 interface MenuItemProps {
-    plate: Plate;
+    plate: MenuItemType;
     isMenu: boolean;
 }
 

@@ -6,7 +6,7 @@ import MenuList from "../../src/components/menu/menuList";
 import WelcomeSection from "../../src/components/general/welcomeSection";
 import { Container, FormButton, FormButtonText } from "../../src/components/general/styles";
 
-import { PlatesContextProvider } from "../../src/contexts/PlatesContext";
+import { PlatesContextProvider } from "../../src/contexts/MenuContext";
 
 export default function Reservation() {
     const router = useRouter();

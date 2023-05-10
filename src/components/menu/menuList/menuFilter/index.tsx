@@ -2,26 +2,26 @@ import React, { useState } from "react";
 import { StyleSheet, View, Text } from "react-native";
 import MultiSlider from '@ptomasroos/react-native-multi-slider';
 
-import { usePlatesContext } from "../../../../contexts/PlatesContext";
+import { useMenuContext } from "../../../../contexts/MenuContext";
 
 interface MenuFilterProps {
     setFilteredData: Function;
 }
 
 const MenuFilter = ({ setFilteredData }: MenuFilterProps) => {
-    const plates = usePlatesContext();
+    const menuList = useMenuContext();
     
     const getSmallestPrice = () => {
-        let smallest = plates[0];
-        plates.forEach(plate => {
+        let smallest = menuList[0];
+        menuList.forEach(plate => {
             smallest = plate.price > smallest.price ? smallest : plate;
         });
 
         return smallest.price;
     }
     const getBiggestPrice = () => {
-        let biggest = plates[0];
-        plates.forEach(plate => {
+        let biggest = menuList[0];
+        menuList.forEach(plate => {
             biggest = plate.price > biggest.price ? plate : biggest;
         });
 
@@ -36,7 +36,7 @@ const MenuFilter = ({ setFilteredData }: MenuFilterProps) => {
     }
 
     const filterData = () => {
-        const filteredPlates = plates.filter(plate => plate.price >= filterValue[0] && plate.price <= filterValue[1]);
+        const filteredPlates = menuList.filter(plate => plate.price >= filterValue[0] && plate.price <= filterValue[1]);
         setFilteredData(filteredPlates);
     }
 

@@ -1,8 +1,8 @@
 import { PropsWithChildren, createContext, useContext, useState } from "react";
 
-import { Plate } from "../components/general/models";
+import { MenuItemType } from "../components/general/models";
 
-const PlatesContext = createContext<Plate[]>(
+const MenuContext = createContext<MenuItemType[]>(
     [
         {
             id: '',
@@ -13,8 +13,8 @@ const PlatesContext = createContext<Plate[]>(
     ]
 );
 
-export const PlatesContextProvider = ({ children }: PropsWithChildren) => {
-    const [plates, setPlates] = useState<Plate[]>([
+export const MenuContextProvider = ({ children }: PropsWithChildren) => {
+    const [plates, setPlates] = useState<MenuItemType[]>([
         {
             id: '1',
             name: 'Strogonoff',
@@ -60,12 +60,12 @@ export const PlatesContextProvider = ({ children }: PropsWithChildren) => {
     ]);
 
     return (
-        <PlatesContext.Provider value={ plates }>{ children }</PlatesContext.Provider>
+        <MenuContext.Provider value={ plates }>{ children }</MenuContext.Provider>
     );
 }
 
-export const usePlatesContext = () => {
-    const context = useContext<Plate[]>(PlatesContext);
+export const useMenuContext = () => {
+    const context = useContext<MenuItemType[]>(MenuContext);
 
     if(context === undefined) {
         throw new Error("context is undefined");

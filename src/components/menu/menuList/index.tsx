@@ -3,23 +3,23 @@ import { FlatList, StyleSheet } from "react-native";
 
 import MenuItem from "./menuItem";
 
-import { Plate } from "../../general/models";
+import { MenuItemType } from "../../general/models";
 import { Container } from "../../general/styles";
 import MenuFilter from "./menuFilter";
 
-import { usePlatesContext } from "../../../contexts/PlatesContext";
+import { useMenuContext } from "../../../contexts/MenuContext";
 
 const MenuList = () => {
-    const plates = usePlatesContext();
+    const plates = useMenuContext();
 
-    const [filteredPlates, setFilteredPlates] = useState<Plate[]>([]);
+    const [filteredMenu, setFilteredMenu] = useState<MenuItemType[]>([]);
 
     return (
         <Container style={styles.container}>
-            <MenuFilter setFilteredData={setFilteredPlates} />
+            <MenuFilter setFilteredData={setFilteredMenu} />
             
             <FlatList
-                data={filteredPlates.length !== 0 ? filteredPlates : plates}
+                data={filteredMenu.length !== 0 ? filteredMenu : plates}
                 renderItem={({ item }) => <MenuItem plate={item} isMenu={true} />}
                 keyExtractor={(item) => item.id} />
         </Container>
