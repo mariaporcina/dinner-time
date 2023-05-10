@@ -1,13 +1,8 @@
 import { PropsWithChildren, createContext, useContext, useState } from "react";
 
-interface PlatesContextProps {
-    id?: string;
-    name: string;
-    shortDescription: string;
-    price: number;
-}
+import { Plate } from "../components/general/models";
 
-const PlatesContext = createContext<PlatesContextProps[]>(
+const PlatesContext = createContext<Plate[]>(
     [
         {
             id: '',
@@ -19,7 +14,7 @@ const PlatesContext = createContext<PlatesContextProps[]>(
 );
 
 export const PlatesContextProvider = ({ children }: PropsWithChildren) => {
-    const [plates, setPlates] = useState<PlatesContextProps[]>([
+    const [plates, setPlates] = useState<Plate[]>([
         {
             id: '1',
             name: 'Strogonoff',
@@ -70,7 +65,7 @@ export const PlatesContextProvider = ({ children }: PropsWithChildren) => {
 }
 
 export const usePlatesContext = () => {
-    const context = useContext<PlatesContextProps[]>(PlatesContext);
+    const context = useContext<Plate[]>(PlatesContext);
 
     if(context === undefined) {
         throw new Error("context is undefined");

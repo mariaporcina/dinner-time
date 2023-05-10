@@ -2,26 +2,26 @@ import React, { useState } from "react";
 import { StyleSheet, View, Text } from "react-native";
 import MultiSlider from '@ptomasroos/react-native-multi-slider';
 
-import { Plate } from "../../../general/models";
+import { usePlatesContext } from "../../../../contexts/PlatesContext";
 
 interface MenuFilterProps {
-    data: Plate[];
-    filteredData: Plate[];
     setFilteredData: Function;
 }
 
-const MenuFilter = ({ data, filteredData, setFilteredData }: MenuFilterProps) => {
+const MenuFilter = ({ setFilteredData }: MenuFilterProps) => {
+    const plates = usePlatesContext();
+    
     const getSmallestPrice = () => {
-        let smallest = data[0];
-        data.forEach(plate => {
+        let smallest = plates[0];
+        plates.forEach(plate => {
             smallest = plate.price > smallest.price ? smallest : plate;
         });
 
         return smallest.price;
     }
     const getBiggestPrice = () => {
-        let biggest = data[0];
-        data.forEach(plate => {
+        let biggest = plates[0];
+        plates.forEach(plate => {
             biggest = plate.price > biggest.price ? plate : biggest;
         });
 
@@ -36,7 +36,7 @@ const MenuFilter = ({ data, filteredData, setFilteredData }: MenuFilterProps) =>
     }
 
     const filterData = () => {
-        const filteredPlates = data.filter(plate => plate.price >= filterValue[0] && plate.price <= filterValue[1]);
+        const filteredPlates = plates.filter(plate => plate.price >= filterValue[0] && plate.price <= filterValue[1]);
         setFilteredData(filteredPlates);
     }
 
@@ -67,7 +67,6 @@ const styles = StyleSheet.create({
         alignContent: "center",
         justifyContent: "flex-end",
         gap: 15,
-        // marginBottom: 10
     },
     text: {
         fontWeight: '600',
