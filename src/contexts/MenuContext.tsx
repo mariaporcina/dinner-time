@@ -1,74 +1,23 @@
-import { PropsWithChildren, createContext, useContext, useState } from "react";
+import { PropsWithChildren, createContext, useContext } from "react";
+
+import useCollection from "../../hooks/useCollection";
 
 import { MenuItemType } from "../components/general/models";
 
-const MenuContext = createContext<MenuItemType[]>(
-    [
-        {
-            id: '',
-            name: '',
-            shortDescription: '',
-            price: 0,
-        }
-    ]
-);
+export const MenuContext = createContext<MenuItemType[] | undefined>(undefined);
 
-export const MenuContextProvider = ({ children }: PropsWithChildren) => {
-    const [plates, setPlates] = useState<MenuItemType[]>([
-        {
-            id: '1',
-            name: 'Strogonoff',
-            shortDescription: 'loren ipsum dolor sit amet',
-            price: 19.99,
-        },
-        {
-            id: '2',
-            name: 'Strogonoff 2',
-            shortDescription: 'loren ipsum dolor sit amet',
-            price: 15.00,
-        },
-        {
-            id: '3',
-            name: 'Strogonoff 3',
-            shortDescription: 'loren ipsum dolor sit amet',
-            price: 9.90,
-        },
-        {
-            id: '4',
-            name: 'Strogonoff 4',
-            shortDescription: 'loren ipsum dolor sit amet',
-            price: 39.99,
-        },
-        {
-            id: '5',
-            name: 'Strogonoff 5',
-            shortDescription: 'loren ipsum dolor sit amet',
-            price: 49.99,
-        },
-        {
-            id: '6',
-            name: 'Strogonoff 6',
-            shortDescription: 'loren ipsum dolor sit amet',
-            price: 49.99,
-        },
-        {
-            id: '7',
-            name: 'Strogonoff 7',
-            shortDescription: 'loren ipsum dolor sit amet',
-            price: 19.99,
-        }
-    ]);
-
+export default function MenuContextProvider ({ children }: PropsWithChildren) {
+    const { data } = useCollection<MenuItemType>('menu');
     return (
-        <MenuContext.Provider value={ plates }>{ children }</MenuContext.Provider>
+        <MenuContext.Provider value={ data }>{ children }</MenuContext.Provider>
     );
 }
 
 export const useMenuContext = () => {
-    const context = useContext<MenuItemType[]>(MenuContext);
+    const context = useContext<MenuItemType[] | undefined>(MenuContext);
 
     if(context === undefined) {
-        throw new Error("context is undefined");
+        throw new Error("context is undefined. useMenuContext must be used inside MenuContextProvider");
     }
 
     return context;

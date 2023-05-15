@@ -1,21 +1,18 @@
-import { ScrollView, StyleSheet, Text, View } from "react-native";
-import { Link, useRouter } from "expo-router";
-
-import { Container } from "../src/components/general/styles";
+import { StyleSheet, View } from "react-native";
+import { useRouter } from "expo-router";
 
 import RegisterForm from "../src/components/register/form";
 import WelcomeSection from "../src/components/general/welcomeSection";
 import Header from "../src/components/general/header";
 import FormNavigation from "../src/components/general/formNavigation";
-
 import useCollection from "../hooks/useCollection";
 import { MenuItemType } from "../src/components/general/models";
 
 export default function Home() {
     const router = useRouter();
 
-    const { data } = useCollection<MenuItemType>("menu");
-    console.log(data);
+    // const { data } = useCollection<MenuItemType>("menu");
+    // console.log(data);
 
     const handleLinkClick = () => {
         router.push({

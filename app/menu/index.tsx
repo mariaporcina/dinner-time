@@ -1,12 +1,12 @@
-import { StyleSheet, View, Text } from "react-native";
-import { Link, useRouter } from "expo-router";
+import { StyleSheet, View } from "react-native";
+import { useRouter } from "expo-router";
 
 import Header from "../../src/components/general/header";
 import MenuList from "../../src/components/menu/menuList";
-import WelcomeSection from "../../src/components/general/welcomeSection";
+
 import { Container, FormButton, FormButtonText } from "../../src/components/general/styles";
 
-import { PlatesContextProvider } from "../../src/contexts/MenuContext";
+import MenuContextProvider from "../../src/contexts/MenuContext";
 
 export default function Reservation() {
     const router = useRouter();
@@ -24,7 +24,7 @@ export default function Reservation() {
     }
 
     return (
-        <PlatesContextProvider>
+        <MenuContextProvider>
             <View style={styles.view}>
                 <Header page='menu' title="Cardápio" />
 
@@ -39,7 +39,7 @@ export default function Reservation() {
                     </FormButton>
                 </Container>
             </View>
-        </PlatesContextProvider>
+        </MenuContextProvider>
     );
 }
 

@@ -10,7 +10,7 @@ interface MenuFilterProps {
 
 const MenuFilter = ({ setFilteredData }: MenuFilterProps) => {
     const menuList = useMenuContext();
-    
+
     const getSmallestPrice = () => {
         let smallest = menuList[0];
         menuList.forEach(plate => {
