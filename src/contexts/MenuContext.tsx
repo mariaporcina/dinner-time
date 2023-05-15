@@ -4,17 +4,28 @@ import useCollection from "../../hooks/useCollection";
 
 import { MenuItemType } from "../components/general/models";
 
-export const MenuContext = createContext<MenuItemType[] | undefined>(undefined);
+interface MenuCollectionType {
+    data: MenuItemType[];
+    loading: boolean;
+    create: (newVal: MenuItemType) => Promise<string>;
+    remove: (id: string) => Promise<void>;
+    update: (id: string, newVal: MenuItemType) => Promise<any>;
+    all: () => Promise<MenuItemType[]>;
+    refreshData: () => void;
+}
+
+export const MenuContext = createContext<MenuCollectionType | undefined>(undefined);
 
 export default function MenuContextProvider ({ children }: PropsWithChildren) {
-    const { data } = useCollection<MenuItemType>('menu');
+    const menuCollection = useCollection<MenuItemType>('menu');
+    
     return (
-        <MenuContext.Provider value={ data }>{ children }</MenuContext.Provider>
+        <MenuContext.Provider value={ menuCollection }>{ children }</MenuContext.Provider>
     );
 }
 
 export const useMenuContext = () => {
-    const context = useContext<MenuItemType[] | undefined>(MenuContext);
+    const context = useContext<MenuCollectionType | undefined>(MenuContext);
 
     if(context === undefined) {
         throw new Error("context is undefined. useMenuContext must be used inside MenuContextProvider");

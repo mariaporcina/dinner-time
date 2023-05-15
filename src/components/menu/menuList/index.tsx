@@ -13,7 +13,7 @@ const MenuList = () => {
     const menuList = useMenuContext();
     const [filteredMenu, setFilteredMenu] = useState<MenuItemType[]>([]);
 
-    if(menuList === undefined || menuList.length === 0) {
+    if(menuList.loading) {
         return <Text>Loading...</Text>
     }
         
@@ -22,7 +22,7 @@ const MenuList = () => {
             <MenuFilter setFilteredData={setFilteredMenu} />
             
             <FlatList
-                data={filteredMenu.length !== 0 ? filteredMenu : menuList}
+                data={filteredMenu.length !== 0 ? filteredMenu : menuList.data}
                 renderItem={({ item }) => <MenuItem plate={item} isMenu={true} />}
                 keyExtractor={(item) => item.id} />
         </Container>

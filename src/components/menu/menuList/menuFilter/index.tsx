@@ -9,19 +9,19 @@ interface MenuFilterProps {
 }
 
 const MenuFilter = ({ setFilteredData }: MenuFilterProps) => {
-    const menuList = useMenuContext();
+    const { data } = useMenuContext();
 
     const getSmallestPrice = () => {
-        let smallest = menuList[0];
-        menuList.forEach(plate => {
+        let smallest = data[0];
+        data.forEach(plate => {
             smallest = plate.price > smallest.price ? smallest : plate;
         });
 
         return smallest.price;
     }
     const getBiggestPrice = () => {
-        let biggest = menuList[0];
-        menuList.forEach(plate => {
+        let biggest = data[0];
+        data.forEach(plate => {
             biggest = plate.price > biggest.price ? plate : biggest;
         });
 
@@ -36,7 +36,7 @@ const MenuFilter = ({ setFilteredData }: MenuFilterProps) => {
     }
 
     const filterData = () => {
-        const filteredPlates = menuList.filter(plate => plate.price >= filterValue[0] && plate.price <= filterValue[1]);
+        const filteredPlates = data.filter(plate => plate.price >= filterValue[0] && plate.price <= filterValue[1]);
         setFilteredData(filteredPlates);
     }
 
