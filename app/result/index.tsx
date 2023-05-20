@@ -12,7 +12,7 @@ import { useReservationContext } from "../../src/contexts/ReservationContext";
 import useCollection from "../../hooks/useCollection";
 
 export default function Reservation() {
-    const { data, create } = useCollection<ReservationType>('reservations');
+    const { create } = useCollection<ReservationType>('reservations');
     const { date, selectedItems, setSelectedItems } = useReservationContext();
 
     const router = useRouter();
