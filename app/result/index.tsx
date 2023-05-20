@@ -1,29 +1,15 @@
 import { StyleSheet, View, Text, FlatList } from "react-native";
 import { useRouter } from "expo-router";
-import { useState } from "react";
 
 import MenuItem from "../../src/components/menu/menuList/menuItem";
 import Header from "../../src/components/general/header";
 import WelcomeSection from "../../src/components/general/welcomeSection";
 import { Container, FormButton, FormButtonText } from "../../src/components/general/styles";
 
-import { MenuItemType } from "../../src/components/general/models";
+import { useReservationContext } from "../../src/contexts/ReservationContext";
 
 export default function Reservation() {
-    const [plates, setPlates] = useState<MenuItemType[]>([
-        {
-            id: '1',
-            name: 'Strogonoff',
-            shortDescription: 'loren ipsum dolor sit amet',
-            price: 29.99,
-        },
-        {
-            id: '2',
-            name: 'Strogonoff 2',
-            shortDescription: 'loren ipsum dolor sit amet',
-            price: 29.99,
-        }
-    ]);
+    const { date, selectedItems, setSelectedItems } = useReservationContext();
 
     const router = useRouter();
 
@@ -31,6 +17,8 @@ export default function Reservation() {
         router.push({
             pathname: "/menu",
         });
+
+        setSelectedItems([]);
     }
 
     const handlePress = () => {}
@@ -43,12 +31,12 @@ export default function Reservation() {
 
             <Text style={styles.textContainer}>
                 <Text style={styles.text}>Data selecionada: </Text>
-                <Text>13/05/2023 20:00</Text>
+                <Text>{ date.toLocaleString() }</Text>
             </Text>
 
             <Container>
                 <FlatList
-                    data={plates}
+                    data={selectedItems}
                     renderItem={({ item }) => <MenuItem plate={item} isMenu={false} />}
                     keyExtractor={plate => plate.id} />
             </Container>

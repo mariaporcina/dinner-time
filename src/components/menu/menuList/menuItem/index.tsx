@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { View, StyleSheet, TouchableWithoutFeedback } from "react-native";
 import Checkbox from 'expo-checkbox';
 
-import { MenuItemType } from "../../../general/models";
 import { ItemContainer, ContentContainer, PlateName, PlateDescription, PlatePrice, PlateImage } from "../../style";
+import { MenuItemType } from "../../../../types/types";
+
+import { useReservationContext } from "../../../../contexts/ReservationContext";
 
 const plateImage = require('../../../../../assets/images/prato1.jpg');
 
@@ -13,11 +15,16 @@ interface MenuItemProps {
 }
 
 const MenuItem = ({ plate, isMenu }: MenuItemProps) => {
+    const { selectedItems, setSelectedItems } = useReservationContext();
     const [isChecked, setChecked] = useState(false);
 
     const handlePress = () => {
         if(isMenu){
             setChecked(!isChecked);
+
+            if(!isChecked) {
+                setSelectedItems([...selectedItems, plate]);
+            }
         }
     }
 

@@ -2,7 +2,7 @@ import { PropsWithChildren, createContext, useContext } from "react";
 
 import useCollection from "../../hooks/useCollection";
 
-import { MenuItemType } from "../components/general/models";
+import { MenuItemType } from "../types/types";
 
 interface MenuCollectionType {
     data: MenuItemType[];

@@ -1,18 +1,25 @@
 import { Dispatch, PropsWithChildren, SetStateAction, createContext, useContext, useState } from "react";
 
+import { MenuItemType } from "../types/types";
+
 interface ReservationContextProps {
     date: Date;
     setDate: Dispatch<SetStateAction<Date>>;
+    selectedItems: MenuItemType[];
+    setSelectedItems: Dispatch<SetStateAction<MenuItemType[]>>;
 }
 
 export const ReservationContext = createContext<ReservationContextProps | undefined>(undefined);
 
 export default function ReservationContextProvider ({ children }: PropsWithChildren) {
-    const [date, setDate] = useState(new Date());
+    const [date, setDate] = useState<Date>(new Date());
+    const [selectedItems, setSelectedItems] = useState<MenuItemType[]>([]);
     
     const reservationContext: ReservationContextProps = {
         date,
-        setDate
+        setDate,
+        selectedItems,
+        setSelectedItems,
     }
 
     return (
