@@ -2,6 +2,8 @@ import React, { SetStateAction, useState } from "react";
 import DateTimePicker,{DateTimePickerEvent} from '@react-native-community/datetimepicker';
 import { Button, Platform, StyleSheet, Text } from "react-native";
 
+import { useReservationContext } from "../../../contexts/ReservationContext";
+
 import { FormButton, FormButtonText, FormContainer } from "../../general/styles";
 
 interface ReservationFormProps {
@@ -9,13 +11,14 @@ interface ReservationFormProps {
 }
 
 const ReservationForm = ({ handlePress }: ReservationFormProps) => {
-    const [date, setDate] = useState(new Date());
+    const { date, setDate } = useReservationContext();
+
     const [mode, setMode] = useState('date');
     const [show, setShow] = useState(false);
 
-    const onChange = (event: DateTimePickerEvent, date?: Date | undefined) => {
-        if(date){
-            setDate(date);
+    const onChange = (event: DateTimePickerEvent, newDate?: Date | undefined) => {
+        if(newDate){
+            setDate(newDate);
         }
     };
 
