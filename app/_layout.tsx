@@ -7,6 +7,8 @@ import {
 import firebaseConfig from "../config/firebaseConfig";
 import useFirebase from "../hooks/useFirebase";
 
+import AppContexts from "../src/contexts/AppContexts";
+
 export default function Layout() {
   // Initialize firebase
   const firebaseApp = useFirebase(firebaseConfig);
@@ -19,5 +21,9 @@ export default function Layout() {
   }
 
   // Render the children routes now that all the assets are loaded.
-  return <Slot />;
+  return (
+    <AppContexts>
+      <Slot />
+    </AppContexts>
+  );
 }

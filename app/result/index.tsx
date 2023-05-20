@@ -1,11 +1,13 @@
 import { StyleSheet, View, Text, FlatList } from "react-native";
-import { Link, useRouter } from "expo-router";
-import Header from "../../src/components/general/header";
-import { Container, FormButton, FormButtonText } from "../../src/components/general/styles";
-import MenuItem from "../../src/components/menu/menuList/menuItem";
+import { useRouter } from "expo-router";
 import { useState } from "react";
-import { MenuItemType } from "../../src/components/general/models";
+
+import MenuItem from "../../src/components/menu/menuList/menuItem";
+import Header from "../../src/components/general/header";
 import WelcomeSection from "../../src/components/general/welcomeSection";
+import { Container, FormButton, FormButtonText } from "../../src/components/general/styles";
+
+import { MenuItemType } from "../../src/components/general/models";
 
 export default function Reservation() {
     const [plates, setPlates] = useState<MenuItemType[]>([
@@ -44,7 +46,7 @@ export default function Reservation() {
                 <Text>13/05/2023 20:00</Text>
             </Text>
 
-            <Container style={styles.listContainer}>
+            <Container>
                 <FlatList
                     data={plates}
                     renderItem={({ item }) => <MenuItem plate={item} isMenu={false} />}
@@ -76,9 +78,6 @@ const styles = StyleSheet.create({
     text: {
         fontWeight: 'bold',
         fontSize: 16,
-    },
-    listContainer: {
-        // flexGrow: 2,
     },
     buttonContainer: {
         flexDirection: "row",

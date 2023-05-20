@@ -1,7 +1,5 @@
-import { ScrollView, StyleSheet, Text, View } from "react-native";
-import { Link, useRouter } from "expo-router";
-
-import { Container } from "../../src/components/general/styles";
+import { StyleSheet, View } from "react-native";
+import { useRouter } from "expo-router";
 
 import LoginForm from "../../src/components/login/form";
 import WelcomeSection from "../../src/components/general/welcomeSection";

@@ -6,8 +6,6 @@ import MenuList from "../../src/components/menu/menuList";
 
 import { Container, FormButton, FormButtonText } from "../../src/components/general/styles";
 
-import MenuContextProvider from "../../src/contexts/MenuContext";
-
 export default function Reservation() {
     const router = useRouter();
 
@@ -24,22 +22,20 @@ export default function Reservation() {
     }
 
     return (
-        <MenuContextProvider>
-            <View style={styles.view}>
-                <Header page='menu' title="Cardápio" />
+        <View style={styles.view}>
+            <Header page='menu' title="Cardápio" />
 
-                <MenuList />
+            <MenuList />
 
-                <Container style={styles.buttonContainer}>
-                    <FormButton style={styles.button} onPress={handleGoBackClick}>
-                        <FormButtonText>Voltar</FormButtonText>
-                    </FormButton>
-                    <FormButton style={styles.button} onPress={handleFinishClick}>
-                        <FormButtonText>Finalizar</FormButtonText>
-                    </FormButton>
-                </Container>
-            </View>
-        </MenuContextProvider>
+            <Container style={styles.buttonContainer}>
+                <FormButton style={styles.button} onPress={handleGoBackClick}>
+                    <FormButtonText>Voltar</FormButtonText>
+                </FormButton>
+                <FormButton style={styles.button} onPress={handleFinishClick}>
+                    <FormButtonText>Finalizar</FormButtonText>
+                </FormButton>
+            </Container>
+        </View>
     );
 }
 

@@ -1,7 +1,5 @@
 import styled from "styled-components/native";
 
-import { colors } from "../general/constants";
-
 const ItemContainer = styled.View`
     flex-direction: row;
     gap: 10px;

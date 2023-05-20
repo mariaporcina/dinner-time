@@ -1,7 +1,7 @@
 import React from 'react';
-import { KeyboardAvoidingView, Platform } from 'react-native';
+import { Platform } from 'react-native';
 
-import { Container, FormContainer, Input, FormButton, FormButtonText } from '../../general/styles';
+import { FormContainer, Input, FormButton, FormButtonText } from '../../general/styles';
 
 interface RegisterFormProps {
     handlePress: Function;
