@@ -43,7 +43,7 @@ export default function Reservation() {
 
             <Container style={styles.buttonContainer}>
                 <FormButton style={styles.button} onPress={handleLinkClick}>
-                    <FormButtonText>Voltar</FormButtonText>
+                    <FormButtonText>Trocar pratos</FormButtonText>
                 </FormButton>
                 <FormButton style={styles.button} onPress={handlePress}>
                     <FormButtonText>Finalizar</FormButtonText>
