@@ -1,5 +1,7 @@
-import { StyleSheet, View, Text, FlatList } from "react-native";
+import { StyleSheet, View, Text, FlatList, Alert } from "react-native";
 import { useRouter } from "expo-router";
+
+import { ReservationType } from "../../src/types/types";
 
 import MenuItem from "../../src/components/menu/menuList/menuItem";
 import Header from "../../src/components/general/header";
@@ -7,8 +9,10 @@ import WelcomeSection from "../../src/components/general/welcomeSection";
 import { Container, FormButton, FormButtonText } from "../../src/components/general/styles";
 
 import { useReservationContext } from "../../src/contexts/ReservationContext";
+import useCollection from "../../hooks/useCollection";
 
 export default function Reservation() {
+    const { data, create } = useCollection<ReservationType>('reservations');
     const { date, selectedItems, setSelectedItems } = useReservationContext();
 
     const router = useRouter();
@@ -21,7 +25,29 @@ export default function Reservation() {
         setSelectedItems([]);
     }
 
-    const handlePress = () => {}
+    const handlePress = async () => {
+        const newReservation: ReservationType = {
+            date: date.toLocaleString(),
+            itens: selectedItems
+        }
+        Alert.alert("Realizar reserva", `Confirme os dados da sua reserva: ${newReservation.date}. Confirmar?`, [
+            {
+                text: "Yes",
+                onPress: async () => {
+                    try {
+                        await create(newReservation);
+            
+                    } catch (error: any) {
+                        Alert.alert("Create Reservation error", error.toString());
+                    }
+                },
+            },
+            {
+              text: "No",
+              style: "cancel",
+            },
+        ]);
+    }
 
     return (
         <View style={styles.view}>

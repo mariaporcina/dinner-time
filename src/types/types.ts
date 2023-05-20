@@ -5,6 +5,13 @@ interface MenuItemType {
     price: number;
 }
 
+interface ReservationType {
+    id?: string;
+    date: string;
+    itens: MenuItemType[];
+}
+
 export {
-    MenuItemType
+    MenuItemType,
+    ReservationType
 }
