@@ -1,15 +1,26 @@
 import React from 'react';
-import { KeyboardAvoidingView, Platform } from 'react-native';
+import { Alert, Platform, Text } from 'react-native';
 
-import { Container, FormContainer, Input, FormButton, FormButtonText } from '../../general/styles';
+import { FormContainer, Input, FormButton, FormButtonText } from '../../general/styles';
+import useAuth from '../../../../hooks/useAuth';
 
-interface LoginFormProps {
-    handlePress: Function;
-}
-
-const LoginForm = ({ handlePress }: LoginFormProps) => {
+const LoginForm = () => {
     const [email, onEmailUpdate] = React.useState('');
     const [password, onPasswordUpdate] = React.useState('');
+
+    const { login, loading } = useAuth();
+
+    const handleLinkClick = async () => {
+        try {
+            await login(email, password);
+        } catch (error: any) {
+            Alert.alert("Login error", error.toString());
+        }
+    }
+
+    if(loading) {
+        return <Text>Redirecting...</Text>
+    } 
     
     return (
         <FormContainer
@@ -26,7 +37,7 @@ const LoginForm = ({ handlePress }: LoginFormProps) => {
                 onChangeText={onPasswordUpdate}
                 keyboardType='visible-password'
                 secureTextEntry={true} />
-            <FormButton onPress={ handlePress } >
+            <FormButton onPress={ handleLinkClick } >
                 <FormButtonText>Entrar</FormButtonText>
             </FormButton>
         </FormContainer>

@@ -1,18 +1,18 @@
-import { StyleSheet, View } from "react-native";
-import { useRouter } from "expo-router";
+import { StyleSheet, View, Text } from "react-native";
+import { Redirect } from "expo-router";
 
 import RegisterForm from "../src/components/register/form";
 import WelcomeSection from "../src/components/general/welcomeSection";
 import Header from "../src/components/general/header";
 import FormNavigation from "../src/components/general/formNavigation";
 
-export default function Home() {
-    const router = useRouter();
+import useAuth from "../hooks/useAuth";
 
-    const handleLinkClick = () => {
-        router.push({
-            pathname: "/login",
-        });
+export default function Home() {
+    const { user } = useAuth();
+
+    if(user) {
+        return <Redirect href="/reservation" />;
     }
 
     return (
@@ -23,7 +23,7 @@ export default function Home() {
                 title={"Bem vindo!\nIt's Dinner Time!"}
                 subtitle="Cadastre-se no app para iniciar." />
 
-            <RegisterForm handlePress={handleLinkClick} />
+            <RegisterForm />
 
             <FormNavigation />
         </View>

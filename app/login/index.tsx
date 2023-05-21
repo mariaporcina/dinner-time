@@ -1,18 +1,18 @@
 import { StyleSheet, View } from "react-native";
-import { useRouter } from "expo-router";
+import { Redirect } from "expo-router";
 
 import LoginForm from "../../src/components/login/form";
 import WelcomeSection from "../../src/components/general/welcomeSection";
 import Header from "../../src/components/general/header";
 import FormNavigation from "../../src/components/general/formNavigation";
 
-export default function Login() {
-    const router = useRouter();
+import useAuth from "../../hooks/useAuth";
 
-    const handleLinkClick = () => {
-        router.push({
-            pathname: "/reservation",
-        });
+export default function Login() {
+    const { user } = useAuth();
+
+    if(user) {
+        return <Redirect href="/reservation" />;
     }
 
     return (
@@ -21,9 +21,9 @@ export default function Login() {
 
             <WelcomeSection
                 title={"Bem vindo de volta!\nIt's Dinner Time!"}
-                subtitle="Acesso sua conta para fazer sua reserva." />
+                subtitle="Acesse sua conta para fazer sua reserva." />
             
-            <LoginForm handlePress={ handleLinkClick } />
+            <LoginForm />
 
             <FormNavigation formPage={'login'} />
         </View>

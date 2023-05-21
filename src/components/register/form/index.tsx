@@ -1,25 +1,38 @@
-import React from 'react';
-import { Platform } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Platform, Text } from 'react-native';
+
+import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 
 import { FormContainer, Input, FormButton, FormButtonText } from '../../general/styles';
 
-interface RegisterFormProps {
-    handlePress: Function;
-}
+const RegisterForm = () => {
+    const [email, onEmailUpdate] = useState('');
+    const [password, onPasswordUpdate] = useState('');
+    const [loading, setLoading] = useState(true);
 
-const RegisterForm = ({ handlePress }: RegisterFormProps) => {
-    const [name, onNameUpdate] = React.useState('');
-    const [email, onEmailUpdate] = React.useState('');
-    const [password, onPasswordUpdate] = React.useState('');
-    
+    const handleLinkClick = async () => {
+        try {
+            setLoading(true);
+            await createUserWithEmailAndPassword(getAuth(), email, password);
+        } catch (error: any) {
+            console.error('Error', error)
+        }
+    }
+
+    useEffect(() => {
+        onAuthStateChanged(getAuth(), () => {
+            setLoading(false);
+        });
+    }, []);
+
+    if(loading){
+        return <Text>Redirecting...</Text>
+    }
+
     return (
         <FormContainer
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
             keyboardVerticalOffset={0} >
-            <Input 
-                placeholder='Nome e Sobrenome'
-                value={name}
-                onChangeText={onNameUpdate} />
             <Input
                 placeholder='E-mail'
                 value={email}
@@ -31,7 +44,7 @@ const RegisterForm = ({ handlePress }: RegisterFormProps) => {
                 onChangeText={onPasswordUpdate}
                 keyboardType='visible-password'
                 secureTextEntry={true} />
-            <FormButton onPress={ handlePress }>
+            <FormButton onPress={ handleLinkClick }>
                 <FormButtonText>Cadastrar</FormButtonText>
             </FormButton>
         </FormContainer>
