@@ -20,7 +20,8 @@ const ReservationsList = () => {
             <FlatList
                 data={data}
                 renderItem={({ item }) => <ReservationItem reservation={item} />}
-                keyExtractor={(item) => item.id} />
+                keyExtractor={(item) => item.id!}
+                ListEmptyComponent={() => <Text>Nenhuma reserva no momento.</Text>} />
         </Container>
     );
 }

@@ -1,5 +1,5 @@
 import { StyleSheet, View, Text, FlatList, Alert } from "react-native";
-import { useRouter } from "expo-router";
+import { Redirect, useRouter } from "expo-router";
 
 import { ReservationType } from "../../src/types/types";
 
@@ -9,11 +9,16 @@ import WelcomeSection from "../../src/components/general/welcomeSection";
 import { Container, FormButton, FormButtonText } from "../../src/components/general/styles";
 
 import { useReservationContext } from "../../src/contexts/ReservationContext";
-import useCollection from "../../hooks/useCollection";
+import useAuth from "../../hooks/useAuth";
+import { useState } from "react";
+import { useAllReservationsContext } from "../../src/contexts/ReservationsContext";
 
 export default function Reservation() {
-    const { create } = useCollection<ReservationType>('reservations');
+    const { loading, create, refreshData } = useAllReservationsContext();
     const { date, selectedItems, setSelectedItems } = useReservationContext();
+    const { user } = useAuth();
+
+    const [newId, setNewId] = useState('');
 
     const router = useRouter();
 
@@ -28,15 +33,17 @@ export default function Reservation() {
     const handlePress = async () => {
         const newReservation: ReservationType = {
             date: date.toLocaleString(),
-            itens: selectedItems
+            itens: selectedItems,
+            userId: user?.uid,
         }
+
         Alert.alert("Realizar reserva", `Confirme os dados da sua reserva: ${newReservation.date}. Confirmar?`, [
             {
                 text: "Yes",
                 onPress: async () => {
                     try {
-                        await create(newReservation);
-            
+                        const newReservationId = await create(newReservation);
+                        setNewId(newReservationId);
                     } catch (error: any) {
                         Alert.alert("Create Reservation error", error.toString());
                     }
@@ -47,6 +54,11 @@ export default function Reservation() {
               style: "cancel",
             },
         ]);
+    }
+
+    if(newId.length > 1) {
+        // await refreshData();
+        return <Redirect href="/allReservations" />
     }
 
     return (
@@ -64,7 +76,8 @@ export default function Reservation() {
                 <FlatList
                     data={selectedItems}
                     renderItem={({ item }) => <MenuItem plate={item} isMenu={false} />}
-                    keyExtractor={plate => plate.id} />
+                    keyExtractor={plate => plate.id}
+                    ListEmptyComponent={() => <Text>Nenhum item selecionado.</Text>} />
             </Container>
 
             <Container style={styles.buttonContainer}>

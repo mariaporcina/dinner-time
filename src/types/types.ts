@@ -6,10 +6,10 @@ interface MenuItemType {
 }
 
 interface ReservationType {
-    id: string;
+    id?: string;
     date: string;
     itens: MenuItemType[];
-    userId: string;
+    userId: string | undefined;
 }
 
 export {

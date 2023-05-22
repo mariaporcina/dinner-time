@@ -28,9 +28,9 @@ export default function AllReservations() {
             <ReservationsList />
 
             <Container style={styles.buttonContainer}>
-                <FormButton style={styles.button} onPress={handleGoBackClick}>
+                {/* <FormButton style={styles.button} onPress={handleGoBackClick}>
                     <FormButtonText>Voltar</FormButtonText>
-                </FormButton>
+                </FormButton> */}
                 <FormButton style={styles.button} onPress={handleFinishClick}>
                     <FormButtonText>Nova reserva</FormButtonText>
                 </FormButton>
@@ -54,6 +54,6 @@ const styles = StyleSheet.create({
         flexBasis: 'auto'
     },
     button: {
-        flexBasis: "48.8%",
+        flexBasis: "100%",
     },
 });
