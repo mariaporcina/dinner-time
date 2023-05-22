@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { View, StyleSheet, TouchableWithoutFeedback } from "react-native";
 import Checkbox from 'expo-checkbox';
 
-import { ItemContainer, ContentContainer, PlateName, PlateDescription, PlatePrice, PlateImage } from "../../style";
+import { ItemContainer, ContentContainer, ItemName, ItemDescription, ItemPrice, ItemImage } from "../../../general/listStyles";
 import { MenuItemType } from "../../../../types/types";
 
 import { useReservationContext } from "../../../../contexts/ReservationContext";
@@ -32,12 +32,12 @@ const MenuItem = ({ plate, isMenu }: MenuItemProps) => {
         <TouchableWithoutFeedback onPress={handlePress}>
             <ItemContainer style={isChecked && styles.viewSelected}>
                 <View>
-                    <PlateImage source={plateImage} />
+                    <ItemImage source={plateImage} />
                 </View>
                 <ContentContainer>
-                    <PlateName>{ plate.name }</PlateName>
-                    <PlateDescription>{ plate.shortDescription }</PlateDescription>
-                    <PlatePrice>{ `R$ ${plate.price.toFixed(2).toString().replace('.', ',')}` }</PlatePrice>
+                    <ItemName>{ plate.name }</ItemName>
+                    <ItemDescription>{ plate.shortDescription }</ItemDescription>
+                    <ItemPrice>{ `R$ ${plate.price.toFixed(2).toString().replace('.', ',')}` }</ItemPrice>
                     { isMenu && <Checkbox
                         style={styles.checkbox}
                         value={isChecked}

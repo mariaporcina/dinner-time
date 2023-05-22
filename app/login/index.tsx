@@ -12,7 +12,7 @@ export default function Login() {
     const { user } = useAuth();
 
     if(user) {
-        return <Redirect href="/reservation" />;
+        return <Redirect href="/allReservations" />;
     }
 
     return (

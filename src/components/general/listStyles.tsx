@@ -13,23 +13,23 @@ const ContentContainer = styled.View`
     flex-grow: 2
 `;
 
-const PlateName = styled.Text`
+const ItemName = styled.Text`
     font-size: 14px;
     font-weight: 600;
     margin-bottom: 5px;
     margin-top: 10px;
 `;
 
-const PlateDescription = styled.Text`
+const ItemDescription = styled.Text`
     flex-grow: 2;
 `;
 
-const PlatePrice = styled.Text`
+const ItemPrice = styled.Text`
     font-weight: 600;
     font-size: 16px;
 `;
 
-const PlateImage = styled.Image`
+const ItemImage = styled.Image`
     width: 140px;
     height: 100px;
     border-radius: 4px;
@@ -38,8 +38,8 @@ const PlateImage = styled.Image`
 export {
     ItemContainer,
     ContentContainer,
-    PlateName,
-    PlateDescription,
-    PlatePrice,
-    PlateImage
+    ItemName,
+    ItemDescription,
+    ItemPrice,
+    ItemImage
 }

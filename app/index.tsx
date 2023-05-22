@@ -12,7 +12,7 @@ export default function Home() {
     const { user } = useAuth();
 
     if(user) {
-        return <Redirect href="/reservation" />;
+        return <Redirect href="/allReservations" />;
     }
 
     return (
