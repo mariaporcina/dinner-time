@@ -1,11 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { FlatList, StyleSheet, Text } from "react-native";
 
 import ReservationItem from "./reservationItem";
-
 import { Container } from "../../general/styles";
 
-// import { useMenuContext } from "../../../contexts/MenuContext";
 import { useAllReservationsContext } from "../../../contexts/ReservationsContext";
 
 const ReservationsList = () => {

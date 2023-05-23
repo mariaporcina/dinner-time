@@ -1,4 +1,4 @@
-import React, { SetStateAction, useState } from "react";
+import React, { SetStateAction, useEffect, useState } from "react";
 import DateTimePicker,{DateTimePickerEvent} from '@react-native-community/datetimepicker';
 import { Button, Platform, StyleSheet, Text } from "react-native";
 
@@ -7,14 +7,22 @@ import { useReservationContext } from "../../../contexts/ReservationContext";
 import { FormButton, FormButtonText, FormContainer } from "../../general/styles";
 
 interface ReservationFormProps {
-    handlePress: Function
+    handlePress: Function;
+    currentDate?: Date;
+    isEditReservation?: boolean;
 }
 
-const ReservationForm = ({ handlePress }: ReservationFormProps) => {
+const ReservationForm = ({ handlePress, currentDate, isEditReservation = false }: ReservationFormProps) => {
     const { date, setDate } = useReservationContext();
 
     const [mode, setMode] = useState('date');
     const [show, setShow] = useState(false);
+
+    useEffect(() => {
+        if(currentDate) {
+            setDate(currentDate);
+        }
+    }, []);
 
     const onChange = (event: DateTimePickerEvent, newDate?: Date | undefined) => {
         if(newDate){
@@ -62,7 +70,7 @@ const ReservationForm = ({ handlePress }: ReservationFormProps) => {
                 />
             )}
             <FormButton onPress={handlePress}>
-                <FormButtonText>Fazer reserva</FormButtonText>
+                {isEditReservation ? <FormButtonText>Editar reserva</FormButtonText> : <FormButtonText>Fazer reserva</FormButtonText>}
             </FormButton>
         </FormContainer>
     );

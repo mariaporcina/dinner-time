@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { StyleSheet, View, Text, FlatList, Alert } from "react-native";
 import { Redirect, useRouter } from "expo-router";
 
@@ -9,9 +10,9 @@ import WelcomeSection from "../../src/components/general/welcomeSection";
 import { Container, FormButton, FormButtonText } from "../../src/components/general/styles";
 
 import { useReservationContext } from "../../src/contexts/ReservationContext";
-import useAuth from "../../hooks/useAuth";
-import { useState } from "react";
 import { useAllReservationsContext } from "../../src/contexts/ReservationsContext";
+import useAuth from "../../hooks/useAuth";
+
 
 export default function Reservation() {
     const { loading, create, refreshData } = useAllReservationsContext();
@@ -32,7 +33,7 @@ export default function Reservation() {
 
     const handlePress = async () => {
         const newReservation: ReservationType = {
-            date: date.toLocaleString(),
+            date: date.toString(),
             itens: selectedItems,
             userId: user?.uid,
         }
@@ -44,20 +45,21 @@ export default function Reservation() {
                     try {
                         const newReservationId = await create(newReservation);
                         setNewId(newReservationId);
+                        await refreshData();
                     } catch (error: any) {
-                        Alert.alert("Create Reservation error", error.toString());
+                        // Alert.alert("Create Reservation error", error.toString());
+                        console.error("Create Reservation error", error.toString());
                     }
                 },
             },
             {
-              text: "No",
-              style: "cancel",
+                text: "No",
+                style: "cancel",
             },
         ]);
     }
 
-    if(newId.length > 1) {
-        // await refreshData();
+    if (newId.length > 1) {
         return <Redirect href="/allReservations" />
     }
 
@@ -69,7 +71,7 @@ export default function Reservation() {
 
             <Text style={styles.textContainer}>
                 <Text style={styles.text}>Data selecionada: </Text>
-                <Text>{ date.toLocaleString() }</Text>
+                <Text>{date.toLocaleString()}</Text>
             </Text>
 
             <Container>
