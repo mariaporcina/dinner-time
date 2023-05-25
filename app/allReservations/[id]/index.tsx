@@ -29,17 +29,28 @@ export default function ReservationDetails() {
     const handleUpsert = async () => {
         setUpdated(false);
         if (reservation) {
-            try {
-                await upsert({
-                    ...reservation,
-                    date: date.toString(),
-                });
-                await refreshData();
-                setUpdated(true);
+            Alert.alert("Editar reserva", `Confirme os dados da sua reserva: ${date.toLocaleString()}. Confirmar?`, [
+                {
+                    text: "Yes",
+                    onPress: async () => {
+                        try {
+                            await upsert({
+                                ...reservation,
+                                date: date.toString(),
+                            });
+                            await refreshData();
+                            setUpdated(true);
 
-            } catch (error: any) {
-                Alert.alert("Update Book error", error.toString());
-            }
+                        } catch (error: any) {
+                            Alert.alert("Update Book error", error.toString());
+                        }
+                    },
+                },
+                {
+                    text: "No",
+                    style: "cancel",
+                },
+            ]);
         }
     }
 
