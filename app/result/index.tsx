@@ -47,8 +47,7 @@ export default function Reservation() {
                         setNewId(newReservationId);
                         await refreshData();
                     } catch (error: any) {
-                        // Alert.alert("Create Reservation error", error.toString());
-                        console.error("Create Reservation error", error.toString());
+                        Alert.alert("Create Reservation error", error.toString());
                     }
                 },
             },

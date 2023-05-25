@@ -24,10 +24,7 @@ const ReservationItem = ({ reservation }: MenuItemProps) => {
         if (reservation.id) {
             router.push(`/allReservations/${reservation.id}`);
         } else {
-            console.error(
-                "View error",
-                "cannot access book details because it does not have an id!"
-            );
+            Alert.alert("View error", "cannot access book details because it does not have an id!");
         }
     }
 
