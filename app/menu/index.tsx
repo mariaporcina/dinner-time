@@ -29,7 +29,7 @@ export default function Reservation() {
 
             <Container style={styles.buttonContainer}>
                 <FormButton style={styles.button} onPress={handleGoBackClick}>
-                    <FormButtonText>Voltar</FormButtonText>
+                    <FormButtonText>Trocar data</FormButtonText>
                 </FormButton>
                 <FormButton style={styles.button} onPress={handleFinishClick}>
                     <FormButtonText>Finalizar</FormButtonText>
