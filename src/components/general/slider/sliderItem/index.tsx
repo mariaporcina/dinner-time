@@ -1,31 +1,54 @@
 import { useState } from 'react';
-import { Alert, FlatList, Image, ImageSourcePropType, ScrollView, Text } from 'react-native'
+import { Alert, FlatList, Image, ImageSourcePropType, ScrollView, Text, View, StyleSheet } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-const banner = require('../../../../assets/images/banner.png');
+import { BannerType } from '../../../../types/types';
 
-interface ImageType {
-    id: string;
-    image: ImageSourcePropType;
+interface SliderProps {
+    banner: BannerType;
 }
 
-const Slider = () => {
-    const [images, setImages] = useState<ImageType[]>([
-        {id: '0', image: banner},
-        {id: '1', image: banner},
-        {id: '2', image: banner}
-    ]);
-
+const SliderItem = ({ banner }: SliderProps) => {
     return (
-        <SafeAreaView>
-            <ScrollView horizontal={true}>
-                {images.map((item, index) => {
-                    return <Image key={index} source={item.image}/>
-                })}
-            </ScrollView>
-        </SafeAreaView>
+        <View style={styles.container}>
+            <Image style={styles.image} source={banner.image}/>
+            <View style={styles.contentBackground}>
+                <View style={styles.contentContainer}>
+                    <Text style={styles.title}>{ banner.title }</Text>
+                    <Text style={styles.text}>{ banner.text }</Text>
+                </View>
+            </View>
+        </View>
     );
 
 }
 
-export default Slider;
+const styles = StyleSheet.create({
+    container: {
+        position: 'relative',
+    },
+    contentBackground: {
+        position: 'absolute',
+        backgroundColor: 'rgba(0,0,0,0.5)',
+        width: '100%',
+        height: '100%',
+    },
+    contentContainer: {
+        position: 'absolute',
+        bottom: 20,
+        left: 10
+    },
+    title: {
+        color: '#fff',
+        fontSize: 20,
+        fontWeight: 'bold'
+    },
+    text: {
+        color: '#fff'
+    },
+    image: {
+        height: 200,
+    },
+});
+
+export default SliderItem;

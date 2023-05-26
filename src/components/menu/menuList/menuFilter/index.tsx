@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
     },
     text: {
         fontWeight: '600',
-        fontSize: 20
+        fontSize: 16
     },
     container: {
         height: 32,

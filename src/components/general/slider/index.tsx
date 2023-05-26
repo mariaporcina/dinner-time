@@ -1,36 +1,43 @@
 import { useState } from 'react';
-import { Alert, FlatList, Image, ImageSourcePropType, ScrollView, Text } from 'react-native'
+import { Alert, FlatList, Image, ImageSourcePropType, ScrollView, Text, StyleSheet, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { Container } from '../styles';
+
+import SliderItem from './sliderItem';
+
+import { BannerType } from '../../../types/types';
 
 const banner = require('../../../../assets/images/banner.png');
 
-interface ImageType {
-    id: string;
-    image: ImageSourcePropType;
-}
-
 const Slider = () => {
-    const [images, setImages] = useState<ImageType[]>([
-        {id: '0', image: banner},
-        {id: '1', image: banner},
-        {id: '2', image: banner}
+    const [banners, setBanners] = useState<BannerType[]>([
+        {
+            id: '0',
+            image: banner,
+            title: 'O queridinho da casa',
+            text: 'Peça agora!',
+        },
+        {
+            id: '1',
+            image: banner,
+            title: 'O queridinho da casa',
+        },
+        {
+            id: '2',
+            image: banner,
+            title: 'O queridinho da casa',
+            text: 'Peça agora!',
+        },
     ]);
 
     return (
-        <SafeAreaView>
+        <View>
             <ScrollView horizontal={true}>
-                {images.map((item, index) => {
-                    return <Image key={index} source={item.image}/>
+                {banners.map((item, index) => {
+                    return <SliderItem key={index} banner={item} />
                 })}
             </ScrollView>
-            {/* <ScrollView horizontal={true}>
-                <FlatList
-                    data={ images }
-                    renderItem={({ item }) => <Image source={item.image}/>}
-                    keyExtractor={(item) => item.id}
-                />
-            </ScrollView> */}
-        </SafeAreaView>
+        </View>
     );
 
 }
