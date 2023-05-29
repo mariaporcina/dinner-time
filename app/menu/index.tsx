@@ -5,6 +5,7 @@ import Header from "../../src/components/general/header";
 import MenuList from "../../src/components/menu/menuList";
 
 import { Container, FormButton, FormButtonText } from "../../src/components/general/styles";
+import Slider from "../../src/components/general/slider";
 
 export default function Reservation() {
     const router = useRouter();
@@ -24,6 +25,8 @@ export default function Reservation() {
     return (
         <View style={styles.view}>
             <Header page='menu' title="Cardápio" />
+
+            <Slider />
 
             <MenuList />
 
