@@ -26,16 +26,21 @@ const Header = ({ page, title }: HeaderProps) => {
 
     if(!loading){
         if(page !== 'login' && page !== 'register' && user === null) {
-            return <Redirect href="/login" />
+            return <Redirect href="/" />
         }
     }
 
     return (
         <View style={ styles.view }>
             <Container style={styles.container}>
-                <Text style={ styles.text }>{!!title ? title : 'Dinner Time'}</Text>
+                { (page === 'login' || page === 'register') && (
+                    <Text style={ styles.text }>Dinner Time</Text> 
+                )}
+                <Text style={ styles.text }>{!!title ? title : ''}</Text>
                 { page !== 'login' && page !== 'register' && (
-                    <TouchableOpacity onPress={ handleClick }><Text style={styles.link}>Sair</Text></TouchableOpacity>
+                    <TouchableOpacity onPress={ handleClick }>
+                        <Text style={styles.link}>Sair</Text>
+                    </TouchableOpacity>
                 )}
             </Container>
         </View> 
@@ -54,7 +59,7 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     text: {
-        fontSize: 22,
+        fontSize: 18,
         fontWeight: 'bold',
         color: '#edf2f4'
     },

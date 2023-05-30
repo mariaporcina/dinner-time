@@ -64,7 +64,7 @@ export default function Reservation() {
 
     return (
         <View style={styles.view}>
-            <Header page="result" title="Reserva" />
+            <Header page="result" title="Nova reserva" />
 
             <WelcomeSection customStyle={styles.welcomeSection} title="Confira os dados da sua reserva" />
 

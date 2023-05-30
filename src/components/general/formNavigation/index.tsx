@@ -16,12 +16,12 @@ const FormNavigation = ({ formPage = 'register' }: FormNavigationProps) => {
         'login': {
             text: 'Ainda não possui conta?',
             linkText: 'Cadastrar',
-            url: '/'
+            url: '/register'
         },
         'register': {
             text: 'Já possui conta?',
             linkText: 'Entrar',
-            url: '/login'
+            url: '/'
         }
     };
 

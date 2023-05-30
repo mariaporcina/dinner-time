@@ -1,7 +1,7 @@
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { Redirect } from "expo-router";
 
-import RegisterForm from "../src/components/register/form";
+import LoginForm from "../src/components/login/form";
 import WelcomeSection from "../src/components/general/welcomeSection";
 import Header from "../src/components/general/header";
 import FormNavigation from "../src/components/general/formNavigation";
@@ -16,24 +16,24 @@ export default function Home() {
     }
 
     return (
-        <View style={styles.view}>
-            <Header page='register' />
+        <View style={ styles.view }>
+            <Header page='login' title="Login" />
 
             <WelcomeSection
-                title={"Bem vindo!\nIt's Dinner Time!"}
-                subtitle="Cadastre-se no app para iniciar." />
+                title={"It's Dinner Time!"}
+                subtitle="Acesse sua conta para fazer sua reserva." />
+            
+            <LoginForm />
 
-            <RegisterForm />
-
-            <FormNavigation />
+            <FormNavigation formPage={'login'} />
         </View>
     );
 }
 
 const styles = StyleSheet.create({
-    view: {
-        flex: 1,
-        backgroundColor: '#edf2f4',
-        paddingBottom: 50,
-    },
+  view: {
+    flex: 1,
+    backgroundColor: '#edf2f4',
+    paddingBottom: 50
+  },
 });

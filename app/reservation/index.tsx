@@ -16,7 +16,7 @@ export default function Reservation() {
     
     return (
         <View style={styles.view}>
-            <Header page='reservation' />
+            <Header page='reservation' title="Nova reserva" />
 
             <WelcomeSection
                 title="Realize sua reserva"

@@ -23,7 +23,7 @@ export default function AllReservations() {
 
     return (
         <View style={styles.view}>
-            <Header page='menu' title="Minhas reservas" />
+            <Header page='allReservations' title="Minhas reservas" />
 
             <ReservationsList />
 
