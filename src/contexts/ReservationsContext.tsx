@@ -1,4 +1,4 @@
-import { Dispatch, PropsWithChildren, SetStateAction, createContext, useContext, useState } from "react";
+import { Dispatch, PropsWithChildren, SetStateAction, createContext, useContext, useEffect } from "react";
 
 import { ReservationType } from "../types/types";
 import useCollection from "../../hooks/useCollection";
@@ -23,8 +23,11 @@ export const AllReservationsContext = createContext<ReservationsCollectionType |
 
 export default function AllReservationsContextProvider ({ children }: PropsWithChildren) {
     const { user } = useAuth();
-    console.log(user?.uid);
     const reservationsCollection = useCollection<ReservationType>(`users/${user?.uid}/reservations`);
+
+    useEffect(() => {
+        reservationsCollection.refreshData();
+    }, [user]);
 
     return (
         <AllReservationsContext.Provider value={ reservationsCollection }>{ children }</AllReservationsContext.Provider>
