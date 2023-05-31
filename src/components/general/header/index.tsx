@@ -7,6 +7,7 @@ import { colors } from "../constants";
 import { Container } from '../styles';
 
 import useAuth from "../../../../hooks/useAuth";
+import { useAllReservationsContext } from "../../../contexts/ReservationsContext";
 
 interface HeaderProps {
     page: string;
@@ -15,12 +16,14 @@ interface HeaderProps {
 
 const Header = ({ page, title }: HeaderProps) => {
     const { user, loading, logout } = useAuth();
+    const { refreshData } = useAllReservationsContext();
 
-    const handleClick = async() => {
+    const handleClick = async () => {
         try {
             await logout();
+            await refreshData();
         } catch (error: any) {
-            console.error('Error', error)
+            console.error('Error', error);
         }
     }
 

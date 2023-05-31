@@ -1,7 +1,8 @@
 import { Dispatch, PropsWithChildren, SetStateAction, createContext, useContext, useState } from "react";
 
-import { MenuItemType, ReservationType } from "../types/types";
+import { ReservationType } from "../types/types";
 import useCollection from "../../hooks/useCollection";
+import useAuth from "../../hooks/useAuth";
 
 interface AllReservationsContextProps {
     date: Date;
@@ -21,7 +22,9 @@ interface ReservationsCollectionType {
 export const AllReservationsContext = createContext<ReservationsCollectionType | undefined>(undefined);
 
 export default function AllReservationsContextProvider ({ children }: PropsWithChildren) {
-    const reservationsCollection = useCollection<ReservationType>('reservations');
+    const { user } = useAuth();
+    console.log(user?.uid);
+    const reservationsCollection = useCollection<ReservationType>(`users/${user?.uid}/reservations`);
 
     return (
         <AllReservationsContext.Provider value={ reservationsCollection }>{ children }</AllReservationsContext.Provider>

@@ -35,7 +35,6 @@ export default function Reservation() {
         const newReservation: ReservationType = {
             date: date.toString(),
             itens: selectedItems,
-            userId: user?.uid,
         }
 
         Alert.alert("Realizar reserva", `Confirme os dados da sua reserva: ${newReservation.date}. Confirmar?`, [

@@ -11,7 +11,6 @@ interface ReservationType {
     id?: string;
     date: string;
     itens: MenuItemType[];
-    userId: string | undefined;
 }
 
 interface BannerType {
