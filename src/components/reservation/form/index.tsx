@@ -1,6 +1,6 @@
 import React, { SetStateAction, useEffect, useState } from "react";
 import DateTimePicker,{DateTimePickerEvent} from '@react-native-community/datetimepicker';
-import { Button, Platform, StyleSheet, Text } from "react-native";
+import { Button, Platform, StyleSheet, Text, View } from "react-native";
 
 import { useReservationContext } from "../../../contexts/ReservationContext";
 
@@ -57,18 +57,24 @@ const ReservationForm = ({ handlePress, currentDate, isEditReservation = false }
                 <Text style={styles.text}>Data selecionada: </Text>
                 <Text>{date.toLocaleString()}</Text>
             </Text>
-            <Button onPress={closePicker} title="Close" />
-            <Button onPress={showDatepicker} title="Selecionar Data" />
-            <Button onPress={showTimepicker} title="Selecionar Horário" />
-            {show && (
-                <DateTimePicker
-                    testID="dateTimePicker"
-                    value={date}
-                    mode={mode as any}
-                    is24Hour={true}
-                    onChange={onChange}
-                />
-            )}
+            <View style={styles.datePickerContainer}>
+                {show && (
+                    <DateTimePicker
+                        testID="dateTimePicker"
+                        value={date}
+                        mode={mode as any}
+                        is24Hour={true}
+                        onChange={onChange}
+                    />
+                )}
+            </View>
+            <View style={styles.buttonContainer}>
+                <Button onPress={showDatepicker} title="Data" />
+                <Button onPress={showTimepicker} title="Horário" />
+                <Button onPress={closePicker} title="Fechar" />
+            </View>
+            <View style={styles.closeButtonContainer}>
+            </View>
             <FormButton onPress={handlePress}>
                 {isEditReservation ? <FormButtonText>Editar reserva</FormButtonText> : <FormButtonText>Fazer reserva</FormButtonText>}
             </FormButton>
@@ -77,13 +83,26 @@ const ReservationForm = ({ handlePress, currentDate, isEditReservation = false }
 }
 
 const styles = StyleSheet.create({
+    datePickerContainer: {
+        alignItems: 'flex-end',
+    },
     textContainer: {
         marginBottom: 20,
+        flex: 1,
         textAlign: 'center'
     },
     text: {
         fontWeight: 'bold',
         fontSize: 16,
+    },
+    buttonContainer: {
+        flexDirection: 'column',
+        justifyContent: 'center',
+        marginBottom: 20,
+        marginTop: 20
+    },
+    closeButtonContainer: {
+        alignItems: 'flex-end',
     }
 })
 

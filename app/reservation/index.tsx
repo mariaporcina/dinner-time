@@ -20,7 +20,8 @@ export default function Reservation() {
 
             <WelcomeSection
                 title="Realize sua reserva"
-                subtitle="Selecione a data e a hora para fazer sua reserva." />
+                subtitle="Selecione a data e a hora para fazer sua reserva."
+                customStyle={styles.welcomeContainer} />
 
             <ReservationForm handlePress={handleLinkClick} />
         </View>
@@ -36,5 +37,10 @@ const styles = StyleSheet.create({
     link: {
         textAlign: 'center',
         color: 'blue'
+    },
+    welcomeContainer: {
+        flexGrow: 0,
+        flexShrink: 0,
+        flexBasis: 'auto',
     }
 });

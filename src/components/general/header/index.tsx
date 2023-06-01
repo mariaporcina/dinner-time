@@ -1,5 +1,6 @@
 import { Redirect } from "expo-router";
 import React from "react";
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 
@@ -42,7 +43,7 @@ const Header = ({ page, title }: HeaderProps) => {
                 <Text style={ styles.text }>{!!title ? title : ''}</Text>
                 { page !== 'login' && page !== 'register' && (
                     <TouchableOpacity onPress={ handleClick }>
-                        <Text style={styles.link}>Sair</Text>
+                        <Ionicons name="log-out-outline" size={24} color="white" />
                     </TouchableOpacity>
                 )}
             </Container>
