@@ -50,5 +50,5 @@ export default function useAuth() {
     });
   }, []);
 
-  return { loading, user, login, logout, error };
+  return { error, loading, user, login, logout };
 }
