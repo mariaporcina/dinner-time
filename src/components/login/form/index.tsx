@@ -1,20 +1,20 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Alert, Platform, Text } from 'react-native';
 
 import { FormContainer, Input, FormButton, FormButtonText } from '../../general/styles';
 import useAuth from '../../../../hooks/useAuth';
 
 const LoginForm = () => {
-    const [email, onEmailUpdate] = React.useState('');
-    const [password, onPasswordUpdate] = React.useState('');
+    const [email, onEmailUpdate] = useState('');
+    const [password, onPasswordUpdate] = useState('');
 
-    const { login, loading } = useAuth();
+    const { login, loading, error } = useAuth();
 
     const handleLinkClick = async () => {
         try {
             await login(email, password);
         } catch (error: any) {
-            Alert.alert("Login error", error.toString());
+            Alert.alert("Erro de Login", "Email e/ou senha incorretos. Tente Novamente.");
         }
     }
 
@@ -26,6 +26,7 @@ const LoginForm = () => {
         <FormContainer
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
             keyboardVerticalOffset={0} >
+            {error && <Text>Email e/ou senha incorretos. Tente novamente.</Text>}
             <Input
                 placeholder='E-mail'
                 value={email}
