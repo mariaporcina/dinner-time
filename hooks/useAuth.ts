@@ -27,8 +27,9 @@ export default function useAuth() {
     await signInWithEmailAndPassword(getAuth(), email, password)
     .catch(() => {
       setError(true);
-      setLoading(false);
     });
+
+    setLoading(false);
   };
 
   /**
