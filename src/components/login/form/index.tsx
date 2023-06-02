@@ -1,20 +1,20 @@
-import React from 'react';
-import { Alert, Platform, Text } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Alert, Platform, StyleSheet, Text } from 'react-native';
 
 import { FormContainer, Input, FormButton, FormButtonText } from '../../general/styles';
 import useAuth from '../../../../hooks/useAuth';
 
 export default function LoginForm() {
-    const [email, onEmailUpdate] = React.useState('');
-    const [password, onPasswordUpdate] = React.useState('');
+    const [email, onEmailUpdate] = useState('');
+    const [password, onPasswordUpdate] = useState('');
 
-    const { login, loading } = useAuth();
+    const { login, loading, error } = useAuth();
 
     const handleLinkClick = async () => {
         try {
             await login(email, password);
         } catch (error: any) {
-            Alert.alert("Login error", error.toString());
+            Alert.alert("Erro de Login", "Email e/ou senha incorretos. Tente Novamente.");
         }
     }
 
@@ -26,6 +26,7 @@ export default function LoginForm() {
         <FormContainer
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
             keyboardVerticalOffset={0} >
+            {error && <Text style={styles.errorMessage}>Email e/ou senha incorretos. Tente novamente.</Text>}
             <Input
                 placeholder='E-mail'
                 value={email}
@@ -43,3 +44,15 @@ export default function LoginForm() {
         </FormContainer>
     );
 }
+
+const styles = StyleSheet.create({
+    errorMessage: {
+        color: '#d90429',
+        marginBottom: 10,
+        backgroundColor: 'rgba(217, 4, 41, 0.2)',
+        paddingTop: 5,
+        paddingBottom: 5,
+        paddingRight: 10,
+        paddingLeft: 10,
+    },
+});
