@@ -12,7 +12,7 @@ interface ReservationFormProps {
     isEditReservation?: boolean;
 }
 
-const ReservationForm = ({ handlePress, currentDate, isEditReservation = false }: ReservationFormProps) => {
+export default function ReservationForm({ handlePress, currentDate, isEditReservation = false }: ReservationFormProps) {
     const { date, setDate } = useReservationContext();
 
     const [mode, setMode] = useState('date');
@@ -105,5 +105,3 @@ const styles = StyleSheet.create({
         alignItems: 'flex-end',
     }
 })
-
-export default ReservationForm;

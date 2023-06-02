@@ -15,7 +15,7 @@ interface HeaderProps {
     title?: string;
 }
 
-const Header = ({ page, title }: HeaderProps) => {
+export default function Header({ page, title }: HeaderProps) {
     const { user, loading, logout } = useAuth();
     const { refreshData } = useAllReservationsContext();
 
@@ -73,5 +73,3 @@ const styles = StyleSheet.create({
         textDecorationLine: 'underline'
     }
 });
-
-export default Header;

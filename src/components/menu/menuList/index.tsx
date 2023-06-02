@@ -9,7 +9,7 @@ import MenuFilter from "./menuFilter";
 
 import { useMenuContext } from "../../../contexts/MenuContext";
 
-const MenuList = () => {
+export default function MenuList() {
     const { data, loading } = useMenuContext();
     const [filteredMenu, setFilteredMenu] = useState<MenuItemType[]>([]);
 
@@ -34,5 +34,3 @@ const styles = StyleSheet.create({
         justifyContent: "flex-start",
     }
 });
-
-export default MenuList;

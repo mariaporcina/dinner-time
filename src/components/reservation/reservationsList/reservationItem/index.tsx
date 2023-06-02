@@ -16,7 +16,7 @@ interface MenuItemProps {
     reservation: ReservationType;
 }
 
-const ReservationItem = ({ reservation }: MenuItemProps) => {
+export default function ReservationItem({ reservation }: MenuItemProps) {
     const router = useRouter();
     const { remove, refreshData } = useAllReservationsContext();
 
@@ -96,5 +96,3 @@ const styles = StyleSheet.create({
         paddingLeft: 15,
     }
 });
-
-export default ReservationItem;

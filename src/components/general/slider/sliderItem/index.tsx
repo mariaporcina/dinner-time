@@ -8,7 +8,7 @@ interface SliderProps {
     banner: BannerType;
 }
 
-const SliderItem = ({ banner }: SliderProps) => {
+export default function SliderItem({ banner }: SliderProps) {
     return (
         <View style={styles.container}>
             <Image style={styles.image} source={banner.image}/>
@@ -50,5 +50,3 @@ const styles = StyleSheet.create({
         height: 200,
     },
 });
-
-export default SliderItem;

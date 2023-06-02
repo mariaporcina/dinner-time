@@ -8,7 +8,7 @@ interface MenuFilterProps {
     setFilteredData: Function;
 }
 
-const MenuFilter = ({ setFilteredData }: MenuFilterProps) => {
+export default function MenuFilter({ setFilteredData }: MenuFilterProps) {
     const { data } = useMenuContext();
 
     const getSmallestPrice = () => {
@@ -77,5 +77,3 @@ const styles = StyleSheet.create({
         marginBottom: 10
     }
 });
-
-export default MenuFilter;

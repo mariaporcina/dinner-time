@@ -4,7 +4,7 @@ import { Alert, Platform, Text } from 'react-native';
 import { FormContainer, Input, FormButton, FormButtonText } from '../../general/styles';
 import useAuth from '../../../../hooks/useAuth';
 
-const LoginForm = () => {
+export default function LoginForm() {
     const [email, onEmailUpdate] = React.useState('');
     const [password, onPasswordUpdate] = React.useState('');
 
@@ -43,5 +43,3 @@ const LoginForm = () => {
         </FormContainer>
     );
 }
-
-export default LoginForm;

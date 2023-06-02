@@ -5,7 +5,7 @@ import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged } from "fir
 
 import { FormContainer, Input, FormButton, FormButtonText } from '../../general/styles';
 
-const RegisterForm = () => {
+export default function RegisterForm() {
     const [email, onEmailUpdate] = useState('');
     const [password, onPasswordUpdate] = useState('');
     const [loading, setLoading] = useState(true);
@@ -50,5 +50,3 @@ const RegisterForm = () => {
         </FormContainer>
     );
 }
-
-export default RegisterForm;

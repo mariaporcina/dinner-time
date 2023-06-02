@@ -12,7 +12,7 @@ interface WelcomeSectionProps {
     }
 }
 
-const WelcomeSection = ({ title='Dinner Time!', subtitle, customStyle }: WelcomeSectionProps) => {
+export default function WelcomeSection({ title='Dinner Time!', subtitle, customStyle }: WelcomeSectionProps) {
     return (
         <Container style={customStyle}>
             <Title>{ title }</Title>
@@ -20,5 +20,3 @@ const WelcomeSection = ({ title='Dinner Time!', subtitle, customStyle }: Welcome
         </Container>
     )
 }
-
-export default WelcomeSection;

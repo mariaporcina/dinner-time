@@ -11,7 +11,7 @@ interface FormNavigationProps {
     formPage?: page;
 }
 
-const FormNavigation = ({ formPage = 'register' }: FormNavigationProps) => {
+export default function FormNavigation({ formPage = 'register' }: FormNavigationProps) {
     const defineNavigation = {
         'login': {
             text: 'Ainda não possui conta?',
@@ -41,5 +41,3 @@ const styles = StyleSheet.create({
         marginTop: 5
     }
 });
-
-export default FormNavigation;

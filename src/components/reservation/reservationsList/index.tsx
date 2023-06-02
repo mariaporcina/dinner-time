@@ -6,7 +6,7 @@ import { Container } from "../../general/styles";
 
 import { useAllReservationsContext } from "../../../contexts/ReservationsContext";
 
-const ReservationsList = () => {
+export default function ReservationsList() {
     const { data, loading } = useAllReservationsContext();
 
     if(loading) {
@@ -29,5 +29,3 @@ const styles = StyleSheet.create({
         justifyContent: "flex-start",
     }
 });
-
-export default ReservationsList;

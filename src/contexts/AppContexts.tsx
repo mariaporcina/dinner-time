@@ -4,7 +4,7 @@ import MenuContextProvider from "./MenuContext";
 import ReservationContextProvider from "./ReservationContext";
 import AllReservationsContextProvider from "./ReservationsContext";
 
-const AppContexts = ({ children }: PropsWithChildren) => {
+export default function AppContexts({ children }: PropsWithChildren) {
     return (
         <MenuContextProvider>
             <ReservationContextProvider>
@@ -15,5 +15,3 @@ const AppContexts = ({ children }: PropsWithChildren) => {
         </MenuContextProvider>
     );
 }
-
-export default AppContexts;

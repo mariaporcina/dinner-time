@@ -14,7 +14,7 @@ interface MenuItemProps {
     isMenu: boolean;
 }
 
-const MenuItem = ({ plate, isMenu }: MenuItemProps) => {
+export default function MenuItem ({ plate, isMenu }: MenuItemProps) {
     const { selectedItems, setSelectedItems } = useReservationContext();
     const [isChecked, setChecked] = useState(false);
 
@@ -60,5 +60,3 @@ const styles = StyleSheet.create({
         top: 0,
     },
 });
-
-export default MenuItem;

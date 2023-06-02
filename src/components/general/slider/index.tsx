@@ -9,7 +9,7 @@ import { BannerType } from '../../../types/types';
 
 const banner = require('../../../../assets/images/banner.png');
 
-const Slider = () => {
+export default function Slider() {
     const [banners, setBanners] = useState<BannerType[]>([
         {
             id: '0',
@@ -41,5 +41,3 @@ const Slider = () => {
     );
 
 }
-
-export default Slider;
