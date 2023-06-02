@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Alert, Platform, Text } from 'react-native';
+import { Alert, Platform, StyleSheet, Text } from 'react-native';
 
 import { FormContainer, Input, FormButton, FormButtonText } from '../../general/styles';
 import useAuth from '../../../../hooks/useAuth';
@@ -26,7 +26,7 @@ const LoginForm = () => {
         <FormContainer
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
             keyboardVerticalOffset={0} >
-            {error && <Text>Email e/ou senha incorretos. Tente novamente.</Text>}
+            {error && <Text style={styles.errorMessage}>Email e/ou senha incorretos. Tente novamente.</Text>}
             <Input
                 placeholder='E-mail'
                 value={email}
@@ -44,5 +44,17 @@ const LoginForm = () => {
         </FormContainer>
     );
 }
+
+const styles = StyleSheet.create({
+    errorMessage: {
+        color: '#d90429',
+        marginBottom: 10,
+        backgroundColor: 'rgba(217, 4, 41, 0.2)',
+        paddingTop: 5,
+        paddingBottom: 5,
+        paddingRight: 10,
+        paddingLeft: 10,
+    },
+});
 
 export default LoginForm;
