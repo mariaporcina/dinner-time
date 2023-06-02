@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { StyleSheet, View, Text, Alert } from "react-native";
 import { Redirect, useSearchParams } from "expo-router";
 
@@ -11,11 +11,18 @@ import { useReservationContext } from "../../../src/contexts/ReservationContext"
 import { useAllReservationsContext } from "../../../src/contexts/ReservationsContext";
 
 import { ReservationType } from "../../../src/types/types";
+import useAuth from "../../../hooks/useAuth";
 
 export default function ReservationDetails() {
     const { id } = useSearchParams();
+    const { user } = useAuth();
 
-    const { data: reservation, loading, upsert } = useDocument<ReservationType>("reservations", id as string);
+    const { data: reservation, loading, upsert, refresh } = useDocument<ReservationType>(`users/${user?.uid}/reservations`, id as string, true);
+
+    useEffect(() => {
+        refresh();
+    }, [user]);
+    
     const { refreshData } = useAllReservationsContext();
     const { date } = useReservationContext();
 
@@ -58,7 +65,7 @@ export default function ReservationDetails() {
         return <Redirect href="/allReservations" />
     }
 
-    if (loading || !reservation) {
+    if (loading) {
         return <Text>Loading...</Text>
     }
 
@@ -68,9 +75,11 @@ export default function ReservationDetails() {
 
             <WelcomeSection
                 title="Editar reserva."
-                subtitle={editing ? `Você está editando a reserva do dia: ${editing}` : 'Você pode editar a data e/ou o horário da sua reserva.'} />
+                subtitle={editing ? `Você está editando a reserva do dia: ${editing}` : 'Você pode editar a data e/ou o horário da sua reserva.'}
+                customStyle={styles.welcomeSection} />
 
-            <ReservationForm handlePress={handleUpsert} currentDate={new Date(reservation.date)} isEditReservation={true} />
+            {reservation && 
+                <ReservationForm handlePress={handleUpsert} currentDate={new Date(reservation.date)} isEditReservation={true} /> }
         </View>
     );
 }
@@ -84,5 +93,10 @@ const styles = StyleSheet.create({
     link: {
         textAlign: 'center',
         color: 'blue'
+    },
+    welcomeSection: {
+        flexGrow: 0,
+        flexShrink: 0,
+        flexBasis: 'auto',
     }
 });
