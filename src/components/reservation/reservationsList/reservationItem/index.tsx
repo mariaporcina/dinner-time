@@ -32,14 +32,14 @@ export default function ReservationItem({ reservation }: MenuItemProps) {
         if (reservation.id) {
             Alert.alert("Cancelar reserva", "Tem certeza que deseja cancelar essa reserva?", [
                 {
-                    text: "Yes",
+                    text: "Confirmar",
                     onPress: async () => {
                         await remove(reservation.id!);
                         await refreshData();
                     },
                 },
                 {
-                    text: "No",
+                    text: "Cancelar",
                     style: "cancel",
                 },
             ]);

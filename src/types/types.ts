@@ -5,6 +5,7 @@ interface MenuItemType {
     name: string;
     shortDescription: string;
     price: number;
+    image: string;
 }
 
 interface ReservationType {

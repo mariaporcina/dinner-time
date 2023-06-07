@@ -38,7 +38,7 @@ export default function ReservationDetails() {
         if (reservation) {
             Alert.alert("Editar reserva", `Confirme os dados da sua reserva: ${date.toLocaleString()}. Confirmar?`, [
                 {
-                    text: "Yes",
+                    text: "Confirmar",
                     onPress: async () => {
                         try {
                             await upsert({
@@ -49,12 +49,12 @@ export default function ReservationDetails() {
                             setUpdated(true);
 
                         } catch (error: any) {
-                            Alert.alert("Update Book error", error.toString());
+                            Alert.alert("Update Reservation error", error.toString());
                         }
                     },
                 },
                 {
-                    text: "No",
+                    text: "Cancelar",
                     style: "cancel",
                 },
             ]);

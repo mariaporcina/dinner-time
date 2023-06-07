@@ -1,10 +1,11 @@
 import React, { SetStateAction, useEffect, useState } from "react";
-import DateTimePicker,{DateTimePickerEvent} from '@react-native-community/datetimepicker';
 import { Button, Platform, StyleSheet, Text, View } from "react-native";
+import { useRouter } from "expo-router";
+import DateTimePicker,{DateTimePickerEvent} from '@react-native-community/datetimepicker';
 
 import { useReservationContext } from "../../../contexts/ReservationContext";
 
-import { FormButton, FormButtonText, FormContainer } from "../../general/styles";
+import { Container, FormButton, FormButtonText, FormContainer } from "../../general/styles";
 
 interface ReservationFormProps {
     handlePress: Function;
@@ -13,6 +14,8 @@ interface ReservationFormProps {
 }
 
 export default function ReservationForm({ handlePress, currentDate, isEditReservation = false }: ReservationFormProps) {
+    const router = useRouter();
+
     const { date, setDate } = useReservationContext();
 
     const [mode, setMode] = useState('date');
@@ -51,6 +54,12 @@ export default function ReservationForm({ handlePress, currentDate, isEditReserv
         setShow(false);
     }
 
+    const handleLinkClick = () => {
+        router.push({
+            pathname: '/allReservations'
+        });
+    }
+
     return (
         <FormContainer>
             <Text style={styles.textContainer}>
@@ -68,16 +77,21 @@ export default function ReservationForm({ handlePress, currentDate, isEditReserv
                     />
                 )}
             </View>
-            <View style={styles.buttonContainer}>
+            <View style={styles.dateContainer}>
                 <Button onPress={showDatepicker} title="Data" />
                 <Button onPress={showTimepicker} title="Horário" />
                 <Button onPress={closePicker} title="Fechar" />
             </View>
             <View style={styles.closeButtonContainer}>
             </View>
-            <FormButton onPress={handlePress}>
-                {isEditReservation ? <FormButtonText>Editar reserva</FormButtonText> : <FormButtonText>Fazer reserva</FormButtonText>}
-            </FormButton>
+            <Container style={styles.buttonContainer}>
+                <FormButton style={styles.button} onPress={handleLinkClick}>
+                    <FormButtonText>Cancelar</FormButtonText>
+                </FormButton>
+                <FormButton style={styles.button} onPress={handlePress}>
+                    {isEditReservation ? <FormButtonText>Editar reserva</FormButtonText> : <FormButtonText>Fazer reserva</FormButtonText>}
+                </FormButton>
+            </Container>
         </FormContainer>
     );
 }
@@ -95,11 +109,23 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 16,
     },
-    buttonContainer: {
+    dateContainer: {
         flexDirection: 'column',
         justifyContent: 'center',
         marginBottom: 20,
         marginTop: 20
+    },
+    buttonContainer: {
+        flexDirection: "row",
+        alignItems: "flex-end",
+        justifyContent: "space-between",
+        gap: 10,
+        flexShrink: 0,
+        flexGrow: 0,
+        flexBasis: 'auto',
+    },
+    button: {
+        flexBasis: "48.8%",
     },
     closeButtonContainer: {
         alignItems: 'flex-end',

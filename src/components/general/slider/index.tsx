@@ -1,7 +1,5 @@
 import { useState } from 'react';
-import { Alert, FlatList, Image, ImageSourcePropType, ScrollView, Text, StyleSheet, View } from 'react-native'
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { Container } from '../styles';
+import { ScrollView, View } from 'react-native'
 
 import SliderItem from './sliderItem';
 

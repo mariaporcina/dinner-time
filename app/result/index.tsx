@@ -39,7 +39,7 @@ export default function Reservation() {
 
         Alert.alert("Realizar reserva", `Confirme os dados da sua reserva: ${newReservation.date}. Confirmar?`, [
             {
-                text: "Yes",
+                text: "Confirmar",
                 onPress: async () => {
                     try {
                         const newReservationId = await create(newReservation);
@@ -51,7 +51,7 @@ export default function Reservation() {
                 },
             },
             {
-                text: "No",
+                text: "Cancelar",
                 style: "cancel",
             },
         ]);
@@ -72,7 +72,7 @@ export default function Reservation() {
                 <Text>{date.toLocaleString()}</Text>
             </Text>
 
-            <Container>
+            <Container style={styles.container}>
                 <FlatList
                     data={selectedItems}
                     renderItem={({ item }) => <MenuItem plate={item} isMenu={false} />}
@@ -93,6 +93,10 @@ export default function Reservation() {
 }
 
 const styles = StyleSheet.create({
+    container: {
+        justifyContent: 'flex-start',
+        flex: 1,
+    },
     view: {
         flex: 1,
         backgroundColor: '#edf2f4',
@@ -110,7 +114,10 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         alignItems: "flex-end",
         justifyContent: "space-between",
-        gap: 10
+        gap: 10,
+        flexShrink: 0,
+        flexGrow: 0,
+        flexBasis: 'auto',
     },
     button: {
         flexBasis: "48.8%",
