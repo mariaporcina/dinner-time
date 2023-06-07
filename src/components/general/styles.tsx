@@ -43,6 +43,19 @@ const Input = styled.TextInput`
     background-color: #fff;
 `;
 
+const ButtonContainer = styled.View`
+    width: 100%;
+    padding: 10px;
+    flex: 1;
+    flexDirection: "row";
+    alignItems: "flex-end";
+    justifyContent: "space-between";
+    gap: 10;
+    flexShrink: 0;
+    flexGrow: 0;
+    flexBasis: 'auto';
+`;
+
 const FormButton = styled.TouchableOpacity`
     background-color: ${colors.darkRed};
     text-align: center;
@@ -61,6 +74,7 @@ export {
     FormButton,
     Title,
     Subtitle,
+    ButtonContainer,
     FormButtonText,
     FormNavigationContainer
 };

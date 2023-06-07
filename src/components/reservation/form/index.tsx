@@ -66,6 +66,7 @@ export default function ReservationForm({ handlePress, currentDate, isEditReserv
                 <Text style={styles.text}>Data selecionada: </Text>
                 <Text>{date.toLocaleString()}</Text>
             </Text>
+            
             <View style={styles.datePickerContainer}>
                 {show && (
                     <DateTimePicker
@@ -77,13 +78,13 @@ export default function ReservationForm({ handlePress, currentDate, isEditReserv
                     />
                 )}
             </View>
+
             <View style={styles.dateContainer}>
                 <Button onPress={showDatepicker} title="Data" />
                 <Button onPress={showTimepicker} title="Horário" />
                 <Button onPress={closePicker} title="Fechar" />
             </View>
-            <View style={styles.closeButtonContainer}>
-            </View>
+            
             <Container style={styles.buttonContainer}>
                 <FormButton style={styles.button} onPress={handleLinkClick}>
                     <FormButtonText>Cancelar</FormButtonText>
@@ -127,7 +128,4 @@ const styles = StyleSheet.create({
     button: {
         flexBasis: "48.8%",
     },
-    closeButtonContainer: {
-        alignItems: 'flex-end',
-    }
 })
