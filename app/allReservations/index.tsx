@@ -9,12 +9,6 @@ import ReservationsList from "../../src/components/reservation/reservationsList"
 export default function AllReservations() {
     const router = useRouter();
 
-    const handleGoBackClick = () => {
-        router.push({
-            pathname: "/reservation",
-        });
-    }
-
     const handleFinishClick = () => {
         router.push({
             pathname: "/reservation",
@@ -28,9 +22,6 @@ export default function AllReservations() {
             <ReservationsList />
 
             <Container style={styles.buttonContainer}>
-                {/* <FormButton style={styles.button} onPress={handleGoBackClick}>
-                    <FormButtonText>Voltar</FormButtonText>
-                </FormButton> */}
                 <FormButton style={styles.button} onPress={handleFinishClick}>
                     <FormButtonText>Nova reserva</FormButtonText>
                 </FormButton>

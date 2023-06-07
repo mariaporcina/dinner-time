@@ -1,4 +1,4 @@
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { useRouter } from "expo-router";
 
 import Header from "../../src/components/general/header";

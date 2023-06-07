@@ -11,13 +11,11 @@ import { Container, FormButton, FormButtonText } from "../../src/components/gene
 
 import { useReservationContext } from "../../src/contexts/ReservationContext";
 import { useAllReservationsContext } from "../../src/contexts/ReservationsContext";
-import useAuth from "../../hooks/useAuth";
 
 
 export default function Reservation() {
-    const { loading, create, refreshData } = useAllReservationsContext();
+    const { create, refreshData } = useAllReservationsContext();
     const { date, selectedItems, setSelectedItems } = useReservationContext();
-    const { user } = useAuth();
 
     const [newId, setNewId] = useState('');
 
