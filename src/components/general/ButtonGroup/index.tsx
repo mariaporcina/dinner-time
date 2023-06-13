@@ -1,23 +1,27 @@
 import React from "react";
 
-import { StyleSheet, Text } from "react-native";
-import { Link, useRouter } from "expo-router";
-import { Container, FormButton, FormButtonText, ButtonContainer } from "../styles";
+import { StyleSheet } from "react-native";
+import { FormButton, FormButtonText, ButtonContainer } from "../styles";
 
-export default function ButtonGroup() {
-    const isEditReservation = false;
+interface ButtonGroupProps {
+    cancelButton: {
+        text: string;
+        handleClick: () => {};
+    };
+    confirmButton: {
+        text: string;
+        handleClick: () => {};
+    };
+}
 
-    const handleLinkClick = () => {}
-
-    const handlePress = () => {}
-
+export default function ButtonGroup({ cancelButton, confirmButton }: ButtonGroupProps) {
     return (
         <ButtonContainer>
-            <FormButton style={styles.button} onPress={handleLinkClick}>
-                <FormButtonText>Cancelar</FormButtonText>
+            <FormButton style={ styles.button } onPress={ cancelButton.handleClick }>
+                <FormButtonText>{ cancelButton.text }</FormButtonText>
             </FormButton>
-            <FormButton style={styles.button} onPress={handlePress}>
-                {isEditReservation ? <FormButtonText>Editar reserva</FormButtonText> : <FormButtonText>Fazer reserva</FormButtonText>}
+            <FormButton style={ styles.button } onPress={ confirmButton.handleClick }>
+                <FormButtonText>{ confirmButton.text }</FormButtonText>
             </FormButton>
         </ButtonContainer>
     )
