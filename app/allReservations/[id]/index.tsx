@@ -79,7 +79,7 @@ export default function ReservationDetails() {
                 customStyle={styles.welcomeSection} />
 
             {reservation && 
-                <ReservationForm handlePress={handleUpsert} currentDate={new Date(reservation.date)} isEditReservation={true} /> }
+                <ReservationForm handleConfirmButton={ handleUpsert } currentDate={new Date(reservation.date)} isEditReservation={true} /> }
         </View>
     );
 }

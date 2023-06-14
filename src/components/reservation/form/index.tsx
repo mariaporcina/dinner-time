@@ -4,16 +4,17 @@ import { useRouter } from "expo-router";
 import DateTimePicker,{DateTimePickerEvent} from '@react-native-community/datetimepicker';
 
 import { useReservationContext } from "../../../contexts/ReservationContext";
+import ButtonGroup from "../../general/ButtonGroup";
 
-import { Container, FormButton, FormButtonText, FormContainer } from "../../general/styles";
+import { FormContainer } from "../../general/styles";
 
 interface ReservationFormProps {
-    handlePress: Function;
+    handleConfirmButton: () => void;
     currentDate?: Date;
     isEditReservation?: boolean;
 }
 
-export default function ReservationForm({ handlePress, currentDate, isEditReservation = false }: ReservationFormProps) {
+export default function ReservationForm({ handleConfirmButton, currentDate, isEditReservation = false }: ReservationFormProps) {
     const router = useRouter();
 
     const { date, setDate } = useReservationContext();
@@ -54,7 +55,7 @@ export default function ReservationForm({ handlePress, currentDate, isEditReserv
         setShow(false);
     }
 
-    const handleLinkClick = () => {
+    const handleCancelButton = () => {
         router.push({
             pathname: '/allReservations'
         });
@@ -84,15 +85,17 @@ export default function ReservationForm({ handlePress, currentDate, isEditReserv
                 <Button onPress={showTimepicker} title="Horário" />
                 <Button onPress={closePicker} title="Fechar" />
             </View>
-            
-            <Container style={styles.buttonContainer}>
-                <FormButton style={styles.button} onPress={handleLinkClick}>
-                    <FormButtonText>Cancelar</FormButtonText>
-                </FormButton>
-                <FormButton style={styles.button} onPress={handlePress}>
-                    {isEditReservation ? <FormButtonText>Editar reserva</FormButtonText> : <FormButtonText>Fazer reserva</FormButtonText>}
-                </FormButton>
-            </Container>
+
+            <ButtonGroup 
+                cancelButton={{
+                    text: 'Cancelar',
+                    handleClick: handleCancelButton
+                }}
+                confirmButton={{
+                    handleClick: handleConfirmButton
+                }}
+                isEditPage={isEditReservation}
+            />
         </FormContainer>
     );
 }
@@ -115,17 +118,5 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         marginBottom: 20,
         marginTop: 20
-    },
-    buttonContainer: {
-        flexDirection: "row",
-        alignItems: "flex-end",
-        justifyContent: "space-between",
-        gap: 10,
-        flexShrink: 0,
-        flexGrow: 0,
-        flexBasis: 'auto',
-    },
-    button: {
-        flexBasis: "48.8%",
     },
 })

@@ -8,7 +8,7 @@ import ReservationForm from "../../src/components/reservation/form";
 export default function Reservation() {
     const router = useRouter();
 
-    const handleLinkClick = () => {
+    const handlePress = () => {
         router.push({
             pathname: "/menu",
         });
@@ -23,7 +23,7 @@ export default function Reservation() {
                 subtitle="Selecione a data e a hora para fazer sua reserva."
                 customStyle={styles.welcomeSection} />
 
-            <ReservationForm handlePress={handleLinkClick} />
+            <ReservationForm handleConfirmButton={ handlePress } />
         </View>
     );
 }

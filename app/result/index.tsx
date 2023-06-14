@@ -11,6 +11,7 @@ import { Container, FormButton, FormButtonText } from "../../src/components/gene
 
 import { useReservationContext } from "../../src/contexts/ReservationContext";
 import { useAllReservationsContext } from "../../src/contexts/ReservationsContext";
+import ButtonGroup from "../../src/components/general/ButtonGroup";
 
 
 export default function Reservation() {
@@ -21,7 +22,7 @@ export default function Reservation() {
 
     const router = useRouter();
 
-    const handleLinkClick = () => {
+    const handleCancelButton = () => {
         router.push({
             pathname: "/menu",
         });
@@ -29,7 +30,7 @@ export default function Reservation() {
         setSelectedItems([]);
     }
 
-    const handlePress = async () => {
+    const handleConfirmButton = async () => {
         const newReservation: ReservationType = {
             date: date.toString(),
             itens: selectedItems,
@@ -78,14 +79,16 @@ export default function Reservation() {
                     ListEmptyComponent={() => <Text>Nenhum item selecionado.</Text>} />
             </Container>
 
-            <Container style={styles.buttonContainer}>
-                <FormButton style={styles.button} onPress={handleLinkClick}>
-                    <FormButtonText>Trocar pratos</FormButtonText>
-                </FormButton>
-                <FormButton style={styles.button} onPress={handlePress}>
-                    <FormButtonText>Finalizar</FormButtonText>
-                </FormButton>
-            </Container>
+            <ButtonGroup
+                cancelButton={{
+                    text: 'Trocar pratos',
+                    handleClick: handleCancelButton
+                }}
+                confirmButton={{
+                    text: 'Finalizar',
+                    handleClick: handleConfirmButton
+                }}
+            />
         </View>
     );
 }
@@ -107,18 +110,6 @@ const styles = StyleSheet.create({
     text: {
         fontWeight: 'bold',
         fontSize: 16,
-    },
-    buttonContainer: {
-        flexDirection: "row",
-        alignItems: "flex-end",
-        justifyContent: "space-between",
-        gap: 10,
-        flexShrink: 0,
-        flexGrow: 0,
-        flexBasis: 'auto',
-    },
-    button: {
-        flexBasis: "48.8%",
     },
     welcomeSection: {
         flexGrow: 0,
