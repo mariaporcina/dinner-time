@@ -1,13 +1,15 @@
 import { StyleSheet, View } from "react-native";
-import { useRouter } from "expo-router";
+import { Redirect, useRouter } from "expo-router";
 
 import Header from "../../src/components/general/header";
 
 import { Container, FormButton, FormButtonText } from "../../src/components/general/styles";
 import ReservationsList from "../../src/components/reservation/reservationsList";
+import useAuth from "../../hooks/useAuth";
 
 export default function AllReservations() {
     const router = useRouter();
+    // const { user, loading } = useAuth();
 
     const handleFinishClick = () => {
         router.push({

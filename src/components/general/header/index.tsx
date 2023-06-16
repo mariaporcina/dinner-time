@@ -1,8 +1,9 @@
 import { Redirect } from "expo-router";
-import React from "react";
+import React, { useEffect } from "react";
 import Ionicons from '@expo/vector-icons/Ionicons';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, Alert } from "react-native";
 
 import { colors } from "../constants";
 import { Container } from '../styles';
@@ -28,11 +29,22 @@ export default function Header({ page, title }: HeaderProps) {
         }
     }
 
-    if(!loading){
-        if(page !== 'login' && page !== 'register' && user === null) {
-            return <Redirect href="/" />
-        }
-    }
+    // console.log(user);
+
+    // if(!loading) {
+    //     if(!user && page !== 'login' && page !== 'register') {
+    //         // console.log(loading);
+    //         // console.log(user);
+    //         return <Redirect href='/' />
+    //     }
+    // }
+    // if(user == null){
+    //     console.log(page);
+    //     console.log(user);
+    //     if(page !== 'login' && page !== 'register') {
+    //         return <Redirect href="/" />
+    //     }
+    // }
 
     return (
         <View style={ styles.view }>

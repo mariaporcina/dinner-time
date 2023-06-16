@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Alert, Platform, StyleSheet, Text } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { FormContainer, Input, FormButton, FormButtonText } from '../../general/styles';
 import useAuth from '../../../../hooks/useAuth';
@@ -14,7 +15,7 @@ export default function LoginForm() {
         try {
             await login(email, password);
         } catch (error: any) {
-            Alert.alert("Erro de Login", "Email e/ou senha incorretos. Tente Novamente.");
+            Alert.alert("Erro de Login", "Algo deu errado. Tente novamente mais tarde.");
         }
     }
 

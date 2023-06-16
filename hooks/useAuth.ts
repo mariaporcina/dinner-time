@@ -7,6 +7,7 @@ import {
   signOut,
   User,
 } from "firebase/auth";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 /**
  * Firebase authentication hook.
@@ -24,10 +25,14 @@ export default function useAuth() {
    */
   const login = async (email: string, password: string) => {
     setLoading(true);
-    await signInWithEmailAndPassword(getAuth(), email, password)
+    const user = await signInWithEmailAndPassword(getAuth(), email, password)
     .catch(() => {
       setError(true);
     });
+
+    if(user) {
+      AsyncStorage.setItem('@user', JSON.stringify(user));
+    }
 
     setLoading(false);
   };
@@ -37,17 +42,38 @@ export default function useAuth() {
    */
   const logout = async () => {
     await signOut(getAuth());
+    // await AsyncStorage.removeItem('@user');
   };
 
   useEffect(() => {
-    onAuthStateChanged(getAuth(), (user) => {
+    const unsubscribe = onAuthStateChanged(getAuth(), (user) => {
       if (user) {
+        console.log('if');
         setUser(user);
       } else {
+        console.log('else');
         setUser(null);
       }
       setLoading(false);
     });
+
+    AsyncStorage.getItem("@user").then((value) => {
+      if(value){
+        return JSON.parse(value) as User;
+      }
+    }).then((value) => {
+      // console.log(value);
+      // if(value) {
+        setUser(value as User);
+      // }
+    })
+    .catch((err: any) => { console.error(err) });
+
+    // console.log('asyncsotrage', user);
+    
+    return () => {
+      unsubscribe();
+    }
   }, []);
 
   return { error, loading, user, login, logout };
