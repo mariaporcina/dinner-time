@@ -36,7 +36,7 @@ export default function LoginForm() {
                 placeholder='Senha'
                 value={password}
                 onChangeText={onPasswordUpdate}
-                keyboardType='visible-password'
+                keyboardType='default'
                 secureTextEntry={true} />
             <FormButton onPress={ handleLinkClick } >
                 <FormButtonText>Entrar</FormButtonText>

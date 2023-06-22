@@ -1,7 +1,7 @@
 import React, { SetStateAction, useEffect, useState } from "react";
-import { Button, Platform, StyleSheet, Text, View } from "react-native";
+import { Button, Platform, StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { useRouter } from "expo-router";
-import DateTimePicker,{DateTimePickerEvent} from '@react-native-community/datetimepicker';
+import DateTimePicker, { DateTimePickerAndroid, DateTimePickerEvent } from '@react-native-community/datetimepicker';
 
 import { useReservationContext } from "../../../contexts/ReservationContext";
 import ButtonGroup from "../../general/ButtonGroup";
@@ -34,13 +34,22 @@ export default function ReservationForm({ handleConfirmButton, currentDate, isEd
         }
     };
 
+    const showModeAndroid = (currentMode: SetStateAction<string>) => {
+        DateTimePickerAndroid.open({
+            value: date,
+            onChange,
+            mode: currentMode as any,
+            is24Hour: true,
+        });
+    };
+
     const showMode = (currentMode: SetStateAction<string>) => {
         if (Platform.OS === 'android') {
-            setShow(false);
+            showModeAndroid(currentMode);
         } else {
             setShow(true);
+            setMode(currentMode);
         }
-        setMode(currentMode);
     }; 
 
     const showDatepicker = () => {
@@ -71,7 +80,6 @@ export default function ReservationForm({ handleConfirmButton, currentDate, isEd
             <View style={styles.datePickerContainer}>
                 {show && (
                     <DateTimePicker
-                        testID="dateTimePicker"
                         value={date}
                         mode={mode as any}
                         is24Hour={true}
@@ -81,9 +89,15 @@ export default function ReservationForm({ handleConfirmButton, currentDate, isEd
             </View>
 
             <View style={styles.dateContainer}>
-                <Button onPress={showDatepicker} title="Data" />
-                <Button onPress={showTimepicker} title="Horário" />
-                <Button onPress={closePicker} title="Fechar" />
+                <TouchableOpacity onPress={showDatepicker}>
+                    <Text>Data</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={showTimepicker}>
+                    <Text>Horário</Text>
+                </TouchableOpacity>
+                { Platform.OS === 'ios' && <TouchableOpacity onPress={closePicker}>
+                    <Text>Fechar</Text>
+                </TouchableOpacity> }
             </View>
 
             <ButtonGroup 

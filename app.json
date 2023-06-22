@@ -1,8 +1,8 @@
 {
   "expo": {
     "scheme": "myapp",
-    "name": "pdm-project",
-    "slug": "pdm-project",
+    "name": "Dinner Time",
+    "slug": "dinner-time",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -16,17 +16,25 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.mariaporcina.dinnertime"
     },
     "android": {
+      "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.mariaporcina.dinnertime"
     },
     "web": {
       "bundler": "metro",
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "5920d1e7-c308-49eb-9473-b4b5e5712e37"
+      }
     }
   }
 }
