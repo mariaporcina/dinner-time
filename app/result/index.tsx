@@ -101,10 +101,10 @@ const styles = StyleSheet.create({
     view: {
         flex: 1,
         backgroundColor: '#edf2f4',
-        paddingBottom: 50,
+        paddingBottom: 10,
     },
     textContainer: {
-        marginBottom: 20,
+        marginBottom: 15,
         textAlign: 'center',
     },
     text: {

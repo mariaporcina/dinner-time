@@ -9,7 +9,7 @@ const Container = styled.View`
 `;
 
 const Title = styled.Text`
-    font-size: 24px;
+    font-size: 20px;
     text-align: center;
     color: #000;
     margin-top: 30px;
@@ -36,7 +36,7 @@ const FormNavigationContainer = styled.View`
 `;
 
 const Input = styled.TextInput`
-    padding: 15px 10px;
+    padding: 8px 10px;
     border: 1px solid #fff;
     font-size: 15px;
     margin-bottom: 10px;
@@ -59,7 +59,7 @@ const ButtonContainer = styled.View`
 const FormButton = styled.TouchableOpacity`
     background-color: ${colors.darkRed};
     text-align: center;
-    padding: 15px;
+    padding: 10px;
 `;
 
 const FormButtonText = styled.Text`

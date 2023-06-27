@@ -46,17 +46,19 @@ export default function MenuFilter({ setFilteredData }: MenuFilterProps) {
                 <Text style={styles.text}>{`R$ ${filterValue[0].toFixed(2).toString().replace('.', ',')}`}</Text>
                 <Text style={styles.text}>{`R$ ${filterValue[1].toFixed(2).toString().replace('.', ',')}`}</Text>
             </View>
-            <MultiSlider
-                containerStyle={styles.container}
-                values={[filterValue[0], filterValue[1]]}
-                sliderLength={394}
-                onValuesChange={onFilterChange}
-                min={getSmallestPrice()}
-                max={getBiggestPrice()}
-                step={1}
-                allowOverlap
-                snapped
-            />
+            <View style={styles.multiSliderContainer}>
+                <MultiSlider
+                    containerStyle={styles.container}
+                    values={[filterValue[0], filterValue[1]]}
+                    sliderLength={280}
+                    onValuesChange={onFilterChange}
+                    min={getSmallestPrice()}
+                    max={getBiggestPrice()}
+                    step={1}
+                    allowOverlap
+                    snapped
+                />
+            </View>
         </View>
     );
 }
@@ -75,5 +77,9 @@ const styles = StyleSheet.create({
     container: {
         height: 32,
         marginBottom: 10
+    },
+    multiSliderContainer: {
+        flexDirection: "row",
+        justifyContent: "center",
     }
 });

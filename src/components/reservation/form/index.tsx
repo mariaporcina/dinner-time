@@ -89,14 +89,14 @@ export default function ReservationForm({ handleConfirmButton, currentDate, isEd
             </View>
 
             <View style={styles.dateContainer}>
-                <TouchableOpacity onPress={showDatepicker}>
-                    <Text>Data</Text>
+                <TouchableOpacity onPress={showDatepicker} style={styles.dateButtons}>
+                    <Text style={styles.dateButtonsText}>Data</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={showTimepicker}>
-                    <Text>Horário</Text>
+                <TouchableOpacity onPress={showTimepicker} style={styles.dateButtons}>
+                    <Text style={styles.dateButtonsText}>Horário</Text>
                 </TouchableOpacity>
-                { Platform.OS === 'ios' && <TouchableOpacity onPress={closePicker}>
-                    <Text>Fechar</Text>
+                { Platform.OS === 'ios' && <TouchableOpacity onPress={closePicker} style={styles.dateButtons}>
+                    <Text style={styles.dateButtonsText}>Fechar</Text>
                 </TouchableOpacity> }
             </View>
 
@@ -131,6 +131,15 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'center',
         marginBottom: 20,
-        marginTop: 20
+        marginTop: 20,
+        gap: 5
     },
+    dateButtons: {
+        backgroundColor: '#8D99AE',
+    },
+    dateButtonsText: {
+        textAlign: "center",
+        color: "#fff",
+        padding: 10
+    }
 })

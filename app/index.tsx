@@ -20,8 +20,9 @@ export default function Home() {
             <Header page='login' title="Login" />
 
             <WelcomeSection
-                title={"It's Dinner Time!"}
-                subtitle="Acesse sua conta para fazer sua reserva." />
+                title="It's Dinner Time!"
+                subtitle="Acesse sua conta para fazer sua reserva."
+                isLogin={ true } />
             
             <LoginForm />
 
@@ -34,6 +35,6 @@ const styles = StyleSheet.create({
   view: {
     flex: 1,
     backgroundColor: '#edf2f4',
-    paddingBottom: 50
+    paddingBottom: 10
   },
 });

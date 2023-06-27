@@ -54,8 +54,8 @@ export default function Header({ page, title }: HeaderProps) {
 const styles = StyleSheet.create({
     view: {
         backgroundColor: colors.darkRed,
-        paddingTop: 45,
-        height: 90,
+        paddingTop: 20,
+        height: 65,
     },
     container: {
         flexDirection: 'row',
